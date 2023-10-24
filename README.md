@@ -1,9 +1,11 @@
 # rate-my-housing
 
-npm install 
-npm install --save-dev
-npm run dev
+cd rate-my-housing <br />
+cd server <br />
+npm install <br />
+npm install --save-dev <br />
+npm run dev <br />
 
-Go to localhost:8080
+Go to localhost:8080 <br />
 
 Mohsin
