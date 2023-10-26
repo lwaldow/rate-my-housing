@@ -18,7 +18,7 @@ function Copyright(props: any) {
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
             {'Copyright © '}
             <Link color="inherit" href="http://localhost:3000">
-                RateMyHousing
+                Your Website
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -29,7 +29,7 @@ function Copyright(props: any) {
 const defaultTheme = createTheme();
 
 export default function SignIn() {
-    const handleSubmit = (event: { preventDefault: () => void; currentTarget: HTMLFormElement | undefined; }) => {
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         console.log({
