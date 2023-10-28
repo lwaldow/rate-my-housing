@@ -42,7 +42,7 @@ function insertComplex(name,management){
 }
 
 function insertComplex(name,management){
-  User.create({
+  Complex.create({
       name: name,
       management: management,
   }).catch((error) => {
@@ -51,7 +51,7 @@ function insertComplex(name,management){
 }
 
 function insertAddress(state,town,zip,address,address_id){
-  User.create({
+  Address.create({
       state: state,
       town: town,
       zip: zip,
@@ -61,8 +61,8 @@ function insertAddress(state,town,zip,address,address_id){
   });
 }
 
-function insertReviews(text_review,kitchen,tag,bathroom,parking,location,pet,storage,laundry){
-  User.create({
+function insertReview(text_review,kitchen,tag,bathroom,parking,location,pet,storage,laundry){
+  Review.create({
       text_review: text_review,
       kitchen: kitchen,
       tag: tag,
@@ -75,4 +75,23 @@ function insertReviews(text_review,kitchen,tag,bathroom,parking,location,pet,sto
   }).catch((error) => {
       console.error('Failed to create a new user record : ', error);
   });
+}
+
+function editReview(review_id,text_review,kitchen,tag,bathroom,parking,location,pet,storage,laundry){
+  User.update({
+      text_review: text_review,
+      kitchen: kitchen,
+      tag: tag,
+      bathroom: bathroom,
+      parking: parking,
+      location: location,
+      pet: pet,
+      storage: storage,
+      laundry: laundry
+    },{
+      where: {
+        review_id: review_id
+      }
+    }
+  );
 }
