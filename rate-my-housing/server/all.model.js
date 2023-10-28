@@ -103,6 +103,7 @@ const Review = sequelize.define("reviews", {
    },
    tag: {
        type: DataTypes.JSON,
+       allowNull: true
    },
    bathroom: {
        type: DataTypes.SMALLINT,

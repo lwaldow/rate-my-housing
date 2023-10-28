@@ -96,7 +96,7 @@ function editReview(review_id,text_review,kitchen,tag,bathroom,parking,location,
   );
 }
 
-function searchReviews(kitchen_l=0,kitchen_h=6,bathroom_l=0,bathroom_h=6,parking_l=0,parking_h=6,location_l=0,location_h=6,pet_l=0,pet_h=6,storage_l=0,storage_h=6,laundry_l=0,laundry_h=6,tag){
+function searchReviews(kitchen_l=0,kitchen_h=6,bathroom_l=0,bathroom_h=6,parking_l=0,parking_h=6,location_l=0,location_h=6,pet_l=0,pet_h=6,storage_l=0,storage_h=6,laundry_l=0,laundry_h=6,tag=None){
   Review.findAll({
     where: {
       kitchen: {[Op.between] : [kitchen_l, kitchen_h]},
