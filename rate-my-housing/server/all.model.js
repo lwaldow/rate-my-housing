@@ -95,7 +95,7 @@ sequelize.sync().then(() => {
 
 
 const Review = sequelize.define("reviews", {
-   tex_review: {
+   text_review: {
        type: DataTypes.STRING(3000),
    },
    kitchen: {
