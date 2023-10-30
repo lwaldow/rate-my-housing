@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const PORT = 8080;
 const controller  = require('./all.controller.js')
+const {User, Review, Complex, Address} = require('./all.model.js')
 require('dotenv').config();
 
 
@@ -35,4 +36,27 @@ app.listen(PORT, () => {
 });
 
 console.log('\\\\\\\\\\\\\\\\\?????????????????')
-controller.insertUser('fjim@gmail.com');
+console.log(controller.insertUser('fjim@gmail.com'));
+
+
+sequelize.sync().then(() => {
+
+    User.create({ email: "hane" }).then(res => {
+        console.log(res)
+    }).catch((error) => {
+        console.error('Failed to create a new record : ', error);
+    });
+
+}).catch((error) => {
+    console.error('Unable to create table : ', error);
+});
+
+const jane = User.build({ email: "Jane" });
+console.log(jane instanceof User); // true
+console.log(jane.email);
+jane.save()
+console.log('save jane')
+
+const users = User.findAll();
+// console.log(users.every(user => user instanceof User)); // true
+console.log("All users:", JSON.stringify(users, null, 2));

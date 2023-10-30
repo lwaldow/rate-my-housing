@@ -23,25 +23,7 @@ sequelize.authenticate().then(() => {
  });
 
  sequelize.sync().then(() => {
-    console.log('User table created successfully!');
+    console.log('all table created successfully!');
  }).catch((error) => {
-    console.error('Unable to create table : ', error);
+    console.error('Unable to create tables : ', error);
  });
-
- sequelize.sync().then(() => {
-    console.log('complex table created successfully!');
- }).catch((error) => {
-    console.error('Unable to create table : ', error);
- });
-
- sequelize.sync().then(() => {
-    console.log('address table created successfully!');
- }).catch((error) => {
-    console.error('Unable to create table : ', error);
- });
-
- sequelize.sync().then(() => {
-    console.log('review table created successfully!');
-  }).catch((error) => {
-    console.error('Unable to create table : ', error);
-  });

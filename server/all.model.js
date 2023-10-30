@@ -13,11 +13,11 @@ const sequelize = new Sequelize(
   );
 
 
-sequelize.authenticate().then(() => {
-    console.log('ORM Connection has been established successfully.');
- }).catch((error) => {
-    console.error('ORM Unable to connect to the database: ', error);
- });
+// sequelize.authenticate().then(() => {
+//     console.log('ORM Connection has been established successfully.');
+//  }).catch((error) => {
+//     console.error('ORM Unable to connect to the database: ', error);
+//  });
 
 // block 1
 
