@@ -1,32 +1,19 @@
 const express = require('express');
 const app = express();
 const PORT = 8080;
+const {sequelize, connectToDB} = require('./db')
+const {User, Review, Complex, Address} = require('./all.model')
 
-
-const Sequelize = require("sequelize");
-const sequelize = new Sequelize(
-    'rmh_db',
-    'postgres',
-    'postgres',
-    {
-      host: 'localhost',
-      port: 5432,
-      dialect: 'postgres'
-    }
-);
-
-
-sequelize.authenticate().then(() => {
-   console.log('ORM Connection has been established successfully.');
-}).catch((error) => {
-   console.error('ORM Unable to connect to the database: ', error);
+app.get("/listings", async (req, res) => {
+    const users = await Complex.findAll();
+    res.status(200).json(users);
 });
 
-
-app.get("/", (req, res) => {
-    res.json({message: "hello world"});
-});
+app.post("/listings", async (req, res) => {
+    const data = req.body
+})
 
 app.listen(PORT, () => {
-    console.log(`Server started on ${PORT}`)
+    console.log(`Server started on ${PORT}`);
+    connectToDB();
 });

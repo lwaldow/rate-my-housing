@@ -1,21 +1,5 @@
-const { Sequelize, DataTypes } = require("sequelize");
-
-const sequelize = new Sequelize(
-  'rmh_db',
-  'postgres',
-  'postgres',
-  {
-    host: 'localhost',
-    port: 5432,
-    dialect: 'postgres'
-  }
-);
-
-sequelize.authenticate().then(() => {
-    console.log('ORM Connection has been established successfully.');
- }).catch((error) => {
-    console.error('ORM Unable to connect to the database: ', error);
- });
+const { sequelize } = require("./db");
+const {DataTypes} = require('sequelize');
 
 // block 1
 
@@ -31,11 +15,11 @@ const User = sequelize.define("users", {
 });
 
 
-sequelize.sync().then(() => {
-   console.log('User table created successfully!');
-}).catch((error) => {
-   console.error('Unable to create table : ', error);
-});
+// sequelize.sync().then(() => {
+//    console.log('User table created successfully!');
+// }).catch((error) => {
+//    console.error('Unable to create table : ', error);
+// });
 
 // block 2
 
@@ -53,11 +37,11 @@ const Complex = sequelize.define("complexes", {
     }
  });
  
- sequelize.sync().then(() => {
-    console.log('complex table created successfully!');
- }).catch((error) => {
-    console.error('Unable to create table : ', error);
- });
+//  sequelize.sync().then(() => {
+//     console.log('complex table created successfully!');
+//  }).catch((error) => {
+//     console.error('Unable to create table : ', error);
+//  });
 
 
 const Address = sequelize.define("addresses", {
@@ -80,18 +64,18 @@ const Address = sequelize.define("addresses", {
    }
 });
 
-Complex.hasMany(Address, {
-   foreignKey: {
-     name: 'foreign_complex_id',
-     type: DataTypes.UUID
-   }
- });
+// Complex.hasMany(Address, {
+//    foreignKey: {
+//      name: 'foreign_complex_id',
+//      type: DataTypes.UUID
+//    }
+//  });
 
-sequelize.sync().then(() => {
-   console.log('address table created successfully!');
-}).catch((error) => {
-   console.error('Unable to create table : ', error);
-});
+// sequelize.sync().then(() => {
+//    console.log('address table created successfully!');
+// }).catch((error) => {
+//    console.error('Unable to create table : ', error);
+// });
 
 // block 3
 
@@ -139,8 +123,10 @@ const Review = sequelize.define("reviews", {
 //  });
 
 
-sequelize.sync().then(() => {
-  console.log('review table created successfully!');
-}).catch((error) => {
-  console.error('Unable to create table : ', error);
-});
+// sequelize.sync().then(() => {
+//   console.log('review table created successfully!');
+// }).catch((error) => {
+//   console.error('Unable to create table : ', error);
+// });
+
+module.exports = {User, Complex, Review, Address}
