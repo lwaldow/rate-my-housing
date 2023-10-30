@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 const PORT = 8080;
+const controller  = require('./all.controller.js')
 require('dotenv').config();
-const {insertUser, insertAddress, insertComplex, insertReview}  = require('./all.controller.js')
 
 
 const Sequelize = require("sequelize");
@@ -34,4 +34,5 @@ app.listen(PORT, () => {
     console.log(`Server started on ${PORT}`)
 });
 
-insertUser('fjim@gmail.com')
+console.log('\\\\\\\\\\\\\\\\\?????????????????')
+controller.insertUser('fjim@gmail.com');

@@ -22,11 +22,11 @@ sequelize.authenticate().then(() => {
     console.error('ORM Unable to connect to the database: ', error);
  });
 
-sequelize.sync().then(() => {
-  console.log('review table created successfully!');
-}).catch((error) => {
-  console.error('Unable to create table : ', error);
-});
+// sequelize.sync().then(() => {
+//   console.log('review table created successfully!');
+// }).catch((error) => {
+//   console.error('Unable to create table : ', error);
+// });
 
 function insertUser(email){
     User.create({
@@ -115,4 +115,4 @@ function searchReviews(kitchen_l=0,kitchen_h=6,bathroom_l=0,bathroom_h=6,parking
   });
 }
 
-module.export =  {insertUser, insertAddress, insertComplex, insertReview, searchReviews};
+module.exports =  {insertUser, insertAddress, insertComplex, insertReview, searchReviews};

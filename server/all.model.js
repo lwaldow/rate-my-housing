@@ -33,11 +33,7 @@ const User = sequelize.define("users", {
 });
 
 
-sequelize.sync().then(() => {
-   console.log('User table created successfully!');
-}).catch((error) => {
-   console.error('Unable to create table : ', error);
-});
+
 
 // block 2
 
@@ -55,11 +51,7 @@ const Complex = sequelize.define("complexes", {
     }
  });
  
- sequelize.sync().then(() => {
-    console.log('complex table created successfully!');
- }).catch((error) => {
-    console.error('Unable to create table : ', error);
- });
+
 
 
 const Address = sequelize.define("addresses", {
@@ -89,11 +81,7 @@ Complex.hasMany(Address, {
    }
  });
 
-sequelize.sync().then(() => {
-   console.log('address table created successfully!');
-}).catch((error) => {
-   console.error('Unable to create table : ', error);
-});
+
 
 // block 3
 
@@ -141,10 +129,6 @@ User.hasMany(Review, {
  });
 
 
-sequelize.sync().then(() => {
-  console.log('review table created successfully!');
-}).catch((error) => {
-  console.error('Unable to create table : ', error);
-});
+console.log('|||||||||||||||||||||')
 
 module.exports =  {User, Address, Complex, Review};
