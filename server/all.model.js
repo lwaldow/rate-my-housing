@@ -1,15 +1,17 @@
 const { Sequelize, DataTypes } = require("sequelize");
+require('dotenv').config();
 
 const sequelize = new Sequelize(
-  'rmh_db',
-  'postgres',
-  'postgres',
-  {
-    host: 'localhost',
-    port: 5432,
-    dialect: 'postgres'
-  }
-);
+    process.env.POSTGRESQL_DB,
+    process.env.POSTGRESQL_DB_USER,
+    process.env.POSTGRESQL_DB_PASSWORD,
+    {
+      host: process.env.POSTGRESQL_DB_HOST,
+      port: process.env.POSTGRESQL_DB_PORT,
+      "dialect": 'postgres'
+    }
+  );
+
 
 sequelize.authenticate().then(() => {
     console.log('ORM Connection has been established successfully.');
@@ -19,79 +21,79 @@ sequelize.authenticate().then(() => {
 
 // block 1
 
-// const User = sequelize.define("users", {
-//    email: {
-//      type: DataTypes.STRING,
-//    },
-//    user_id: {
-//       type: DataTypes.UUID,
-//       defaultValue: DataTypes.UUIDV4,
-//       primaryKey: true,
-//    }
-// });
+const User = sequelize.define("users", {
+   email: {
+     type: DataTypes.STRING,
+   },
+   user_id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+   }
+});
 
 
-// sequelize.sync().then(() => {
-//    console.log('User table created successfully!');
-// }).catch((error) => {
-//    console.error('Unable to create table : ', error);
-// });
+sequelize.sync().then(() => {
+   console.log('User table created successfully!');
+}).catch((error) => {
+   console.error('Unable to create table : ', error);
+});
 
 // block 2
 
-// const Complex = sequelize.define("complexes", {
-//     name: {
-//       type: DataTypes.STRING,
-//     },
-//     management: {
-//      type: DataTypes.STRING,
-//     },
-//     complex_id: {
-//       type: DataTypes.UUID,
-//       defaultValue: DataTypes.UUIDV4,
-//       primaryKey: true,
-//     }
-//  });
+const Complex = sequelize.define("complexes", {
+    name: {
+      type: DataTypes.STRING,
+    },
+    management: {
+     type: DataTypes.STRING,
+    },
+    complex_id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+    }
+ });
  
-//  sequelize.sync().then(() => {
-//     console.log('complex table created successfully!');
-//  }).catch((error) => {
-//     console.error('Unable to create table : ', error);
-//  });
+ sequelize.sync().then(() => {
+    console.log('complex table created successfully!');
+ }).catch((error) => {
+    console.error('Unable to create table : ', error);
+ });
 
 
-// const Address = sequelize.define("addresses", {
-//     state: {
-//         type: DataTypes.STRING,
-//     },
-//     town: {
-//         type: DataTypes.STRING,
-//     },
-//     zip: {
-//         type: DataTypes.INTEGER,
-//     },
-//     address: {
-//         type: DataTypes.STRING,
-//     },
-//     address_id: {
-//       type: DataTypes.UUID,
-//       defaultValue: DataTypes.UUIDV4,
-//       primaryKey: true,
-//    }
-// });
+const Address = sequelize.define("addresses", {
+    state: {
+        type: DataTypes.STRING,
+    },
+    town: {
+        type: DataTypes.STRING,
+    },
+    zip: {
+        type: DataTypes.INTEGER,
+    },
+    address: {
+        type: DataTypes.STRING,
+    },
+    address_id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+   }
+});
 
-// Complex.hasMany(Address, {
-//    foreignKey: {
-//      name: 'foreign_complex_id',
-//      type: DataTypes.UUID
-//    }
-//  });
+Complex.hasMany(Address, {
+   foreignKey: {
+     name: 'foreign_complex_id',
+     type: DataTypes.UUID
+   }
+ });
 
-// sequelize.sync().then(() => {
-//    console.log('address table created successfully!');
-// }).catch((error) => {
-//    console.error('Unable to create table : ', error);
-// });
+sequelize.sync().then(() => {
+   console.log('address table created successfully!');
+}).catch((error) => {
+   console.error('Unable to create table : ', error);
+});
 
 // block 3
 
@@ -131,12 +133,12 @@ const Review = sequelize.define("reviews", {
   }
 });
 
-// User.hasMany(Review, {
-//    foreignKey: {
-//      name: 'foreign_user_id',
-//      type: DataTypes.UUID
-//    }
-//  });
+User.hasMany(Review, {
+   foreignKey: {
+     name: 'foreign_user_id',
+     type: DataTypes.UUID
+   }
+ });
 
 
 sequelize.sync().then(() => {
@@ -144,3 +146,5 @@ sequelize.sync().then(() => {
 }).catch((error) => {
   console.error('Unable to create table : ', error);
 });
+
+module.exports =  {User, Address, Complex, Review};

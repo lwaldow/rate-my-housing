@@ -1,19 +1,22 @@
 const express = require('express');
 const app = express();
 const PORT = 8080;
+require('dotenv').config();
+const {insertUser, insertAddress, insertComplex, insertReview}  = require('./all.controller.js')
 
 
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(
-    'rmh_db',
-    'postgres',
-    'postgres',
+    process.env.POSTGRESQL_DB,
+    process.env.POSTGRESQL_DB_USER,
+    process.env.POSTGRESQL_DB_PASSWORD,
     {
-      host: 'localhost',
-      port: 5432,
-      dialect: 'postgres'
+      host: process.env.POSTGRESQL_DB_HOST,
+      port: process.env.POSTGRESQL_DB_PORT,
+      "dialect": 'postgres'
     }
-);
+  );
+
 
 
 sequelize.authenticate().then(() => {
@@ -30,3 +33,5 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server started on ${PORT}`)
 });
+
+insertUser('fjim@gmail.com')
