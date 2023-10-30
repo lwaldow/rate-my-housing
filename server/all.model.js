@@ -19,79 +19,79 @@ sequelize.authenticate().then(() => {
 
 // block 1
 
-// const User = sequelize.define("users", {
-//    email: {
-//      type: DataTypes.STRING,
-//    },
-//    user_id: {
-//       type: DataTypes.UUID,
-//       defaultValue: DataTypes.UUIDV4,
-//       primaryKey: true,
-//    }
-// });
+const User = sequelize.define("users", {
+   email: {
+     type: DataTypes.STRING,
+   },
+   user_id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+   }
+});
 
 
-// sequelize.sync().then(() => {
-//    console.log('User table created successfully!');
-// }).catch((error) => {
-//    console.error('Unable to create table : ', error);
-// });
+sequelize.sync().then(() => {
+   console.log('User table created successfully!');
+}).catch((error) => {
+   console.error('Unable to create table : ', error);
+});
 
 // block 2
 
-// const Complex = sequelize.define("complexes", {
-//     name: {
-//       type: DataTypes.STRING,
-//     },
-//     management: {
-//      type: DataTypes.STRING,
-//     },
-//     complex_id: {
-//       type: DataTypes.UUID,
-//       defaultValue: DataTypes.UUIDV4,
-//       primaryKey: true,
-//     }
-//  });
+const Complex = sequelize.define("complexes", {
+    name: {
+      type: DataTypes.STRING,
+    },
+    management: {
+     type: DataTypes.STRING,
+    },
+    complex_id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+    }
+ });
  
-//  sequelize.sync().then(() => {
-//     console.log('complex table created successfully!');
-//  }).catch((error) => {
-//     console.error('Unable to create table : ', error);
-//  });
+ sequelize.sync().then(() => {
+    console.log('complex table created successfully!');
+ }).catch((error) => {
+    console.error('Unable to create table : ', error);
+ });
 
 
-// const Address = sequelize.define("addresses", {
-//     state: {
-//         type: DataTypes.STRING,
-//     },
-//     town: {
-//         type: DataTypes.STRING,
-//     },
-//     zip: {
-//         type: DataTypes.INTEGER,
-//     },
-//     address: {
-//         type: DataTypes.STRING,
-//     },
-//     address_id: {
-//       type: DataTypes.UUID,
-//       defaultValue: DataTypes.UUIDV4,
-//       primaryKey: true,
-//    }
-// });
+const Address = sequelize.define("addresses", {
+    state: {
+        type: DataTypes.STRING,
+    },
+    town: {
+        type: DataTypes.STRING,
+    },
+    zip: {
+        type: DataTypes.INTEGER,
+    },
+    address: {
+        type: DataTypes.STRING,
+    },
+    address_id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+   }
+});
 
-// Complex.hasMany(Address, {
-//    foreignKey: {
-//      name: 'foreign_complex_id',
-//      type: DataTypes.UUID
-//    }
-//  });
+Complex.hasMany(Address, {
+   foreignKey: {
+     name: 'foreign_complex_id',
+     type: DataTypes.UUID
+   }
+ });
 
-// sequelize.sync().then(() => {
-//    console.log('address table created successfully!');
-// }).catch((error) => {
-//    console.error('Unable to create table : ', error);
-// });
+sequelize.sync().then(() => {
+   console.log('address table created successfully!');
+}).catch((error) => {
+   console.error('Unable to create table : ', error);
+});
 
 // block 3
 
