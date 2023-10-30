@@ -1,5 +1,5 @@
 const { Sequelize, DataTypes } = require("sequelize");
-import {User, Address, Complex, Review} from all.model.js ;
+const {User, Review, Complex, Address} = require('./all.model.js')
 require('dotenv').config();
 
 
@@ -114,3 +114,5 @@ function searchReviews(kitchen_l=0,kitchen_h=6,bathroom_l=0,bathroom_h=6,parking
     }
   });
 }
+
+module.export =  {insertUser, insertAddress, insertComplex, insertReview, searchReviews};

@@ -2,9 +2,7 @@ const express = require('express');
 const app = express();
 const PORT = 8080;
 require('dotenv').config();
-
-console.log('hshe')
-console.log(process.env.POSTGRESQL_DB_HOST);
+const {insertUser, insertAddress, insertComplex, insertReview}  = require('./all.controller.js')
 
 
 const Sequelize = require("sequelize");
@@ -35,3 +33,5 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server started on ${PORT}`)
 });
+
+insertUser('fjim@gmail.com')

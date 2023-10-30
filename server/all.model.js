@@ -133,12 +133,12 @@ const Review = sequelize.define("reviews", {
   }
 });
 
-// User.hasMany(Review, {
-//    foreignKey: {
-//      name: 'foreign_user_id',
-//      type: DataTypes.UUID
-//    }
-//  });
+User.hasMany(Review, {
+   foreignKey: {
+     name: 'foreign_user_id',
+     type: DataTypes.UUID
+   }
+ });
 
 
 sequelize.sync().then(() => {
@@ -146,3 +146,5 @@ sequelize.sync().then(() => {
 }).catch((error) => {
   console.error('Unable to create table : ', error);
 });
+
+module.exports =  {User, Address, Complex, Review};
