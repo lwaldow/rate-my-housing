@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.maroon-bg {
+  background-color: maroon;
+}
+
+.text-maroon {
+  color: maroon;
+}
