@@ -19,7 +19,7 @@ app.post("/users", async (req, res) => {
         const args = req.body
 
     try {
-        const newUser = await controller.insertUser(email)
+        const newUser = await controller.insertUser(args.email)
         res.status(201).json(newUser)
     }
     catch(err) {
