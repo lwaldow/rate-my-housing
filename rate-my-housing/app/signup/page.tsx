@@ -1,3 +1,5 @@
+'use client';
+
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -104,7 +106,7 @@ export default function SignUp() {
                         </Button>
                         <Grid container justifyContent="flex-end">
                             <Grid item>
-                                <Link href="#" variant="body2">
+                                <Link href="/signin" variant="body2">
                                     Already have an account? Sign in
                                 </Link>
                             </Grid>
