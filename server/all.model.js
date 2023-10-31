@@ -50,12 +50,12 @@ const Address = sequelize.define("addresses", {
    }
 });
 
-// Complex.hasMany(Address, {
-//    foreignKey: {
-//      name: 'foreign_complex_id',
-//      type: DataTypes.UUID
-//    }
-//  });
+Complex.hasMany(Address, {
+   foreignKey: {
+     name: 'foreign_complex_id',
+     type: DataTypes.UUID
+   }
+ });
 // block 3
 
 const Review = sequelize.define("reviews", {
