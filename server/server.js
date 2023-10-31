@@ -18,7 +18,6 @@ app.get("/users", async (req, res) => {
 app.post("/users", async (req, res) => {
         const args = req.body
 
-
     try {
         const newUser = await controller.insertUser(email)
         res.status(201).json(newUser)
