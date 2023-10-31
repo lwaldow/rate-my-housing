@@ -102,11 +102,5 @@ User.hasMany(Review, {
  });
 
 
-// sequelize.sync().then(() => {
-//   console.log('review table created successfully!');
-// }).catch((error) => {
-//   console.error('Unable to create table : ', error);
-// });
-
 module.exports = {User, Complex, Review, Address}
 console.log('|||||||||||||||||||||')

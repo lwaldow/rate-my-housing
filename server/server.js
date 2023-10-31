@@ -16,15 +16,47 @@ app.get("/users", async (req, res) => {
 });
 
 app.post("/users", async (req, res) => {
-    const {email} = req.body
+        const args = req.body
 
-    const newUser = User.build({
-        'email': email
-    })
 
     try {
-        await newUser.save()
+        const newUser = await controller.insertUser(email)
         res.status(201).json(newUser)
+    }
+    catch(err) {
+        res.json(err)
+    }
+})
+
+app.post("/complexes", async (req, res) => {
+    const args = req.body
+    try {
+        const newComplex = await controller.insertComplex(args.name, args.management)
+        res.status(201).json(newComplex)
+    }
+    catch(err) {
+        res.json(err)
+    }
+})
+
+app.post("/addresses", async (req, res) => {
+    const args = req.body
+
+    try {
+        const newAdress = await controller.insertAddress(args.state,args.town,args.zip,args.address,args.foreign_complex_id)
+        res.status(201).json(newAdress)
+    }
+    catch(err) {
+        res.json(err)
+    }
+})
+
+app.post("/review", async (req, res) => {
+    const args = req.body
+
+    try {
+        const newReview = await controller.insertReview(args.text_review,args.kitchen,args.tag,args.bathroom,args.parking,args.location,args.pet,args.storage,args.laundry)
+        res.status(201).json(newReview)
     }
     catch(err) {
         res.json(err)
@@ -35,29 +67,3 @@ app.listen(PORT, () => {
     console.log(`Server started on ${PORT}`);
     connectToDB();
 });
-
-// console.log('\\\\\\\\\\\\\\\\\?????????????????')
-// console.log(controller.insertUser('fjim@gmail.com'));
-
-
-// sequelize.sync().then(() => {
-
-//     User.create({ email: "hane" }).then(res => {
-//         console.log(res)
-//     }).catch((error) => {
-//         console.error('Failed to create a new record : ', error);
-//     });
-
-// }).catch((error) => {
-//     console.error('Unable to create table : ', error);
-// });
-
-// const jane = User.build({ email: "Jane" });
-// console.log(jane instanceof User); // true
-// console.log(jane.email);
-// jane.save()
-// console.log('save jane')
-
-// const users = User.findAll();
-// console.log(users.every(user => user instanceof User)); // true
-// console.log("All users:", JSON.stringify(users, null, 2));

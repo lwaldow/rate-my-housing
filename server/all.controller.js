@@ -29,7 +29,7 @@ sequelize.authenticate().then(() => {
 // });
 
 function insertUser(email){
-    User.create({
+    return User.create({
         email: email,
     }).catch((error) => {
         console.error('Failed to create a new user record : ', error);
@@ -37,16 +37,7 @@ function insertUser(email){
 }
 
 function insertComplex(name,management){
-  User.create({
-      name: management,
-      management: management,
-  }).catch((error) => {
-      console.error('Failed to create a new user record : ', error);
-  });
-}
-
-function insertComplex(name,management){
-  Complex.create({
+  return Complex.create({
       name: name,
       management: management,
   }).catch((error) => {
@@ -54,8 +45,8 @@ function insertComplex(name,management){
   });
 }
 
-function insertAddress(state,town,zip,address,address_id){
-  Address.create({
+function insertAddress(state,town,zip,address,foreign_complex_id){
+  return Address.create({
       state: state,
       town: town,
       zip: zip,
@@ -66,7 +57,7 @@ function insertAddress(state,town,zip,address,address_id){
 }
 
 function insertReview(text_review,kitchen,tag,bathroom,parking,location,pet,storage,laundry){
-  Review.create({
+  return Review.create({
       text_review: text_review,
       kitchen: kitchen,
       tag: tag,
@@ -82,7 +73,7 @@ function insertReview(text_review,kitchen,tag,bathroom,parking,location,pet,stor
 }
 
 function editReview(review_id,text_review,kitchen,tag,bathroom,parking,location,pet,storage,laundry){
-  User.update({
+  return User.update({
       text_review: text_review,
       kitchen: kitchen,
       tag: tag,
@@ -101,7 +92,7 @@ function editReview(review_id,text_review,kitchen,tag,bathroom,parking,location,
 }
 
 function searchReviews(kitchen_l=0,kitchen_h=6,bathroom_l=0,bathroom_h=6,parking_l=0,parking_h=6,location_l=0,location_h=6,pet_l=0,pet_h=6,storage_l=0,storage_h=6,laundry_l=0,laundry_h=6,tag=None){
-  Review.findAll({
+  return Review.findAll({
     where: {
       kitchen: {[Op.between] : [kitchen_l, kitchen_h]},
       bathroom: {[Op.between] : [bathroom_l, bathroom_h]},
@@ -115,4 +106,4 @@ function searchReviews(kitchen_l=0,kitchen_h=6,bathroom_l=0,bathroom_h=6,parking
   });
 }
 
-module.exports =  {insertUser, insertAddress, insertComplex, insertReview, searchReviews};
+module.exports =  {insertUser, insertAddress, insertComplex, insertReview, searchReviews, editReview};
