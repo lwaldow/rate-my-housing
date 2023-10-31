@@ -12,7 +12,7 @@ export default function Navbar() {
                 </Link>
                 <div>
                     <Link href="/about" className="text-self-center text-1xl font-bold underline mr-2">About</Link>
-                    <Link href="/signin" className="text-self-center text-1xl font-bold underline">Log In</Link>
+                    <Link href="/signin" className="text-self-center text-1xl font-bold underline mr-2">Log In</Link>
                     <Link href="/signup" className="text-self-center text-1xl font-bold underline">Sign Up</Link>
                 </div>
             </div>
