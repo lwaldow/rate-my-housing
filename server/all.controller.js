@@ -72,7 +72,7 @@ function insertReview(text_review,kitchen,tag,bathroom,parking,location,pet,stor
   });
 }
 
-function editReview(review_id,text_review,kitchen,tag,bathroom,parking,location,pet,storage,laundry){
+function editReview(review_id,text_review,kitchen,tag,bathroom,parking,location,pet,storage,laundry,foreign_user_id){
   return User.update({
       text_review: text_review,
       kitchen: kitchen,
@@ -82,7 +82,8 @@ function editReview(review_id,text_review,kitchen,tag,bathroom,parking,location,
       location: location,
       pet: pet,
       storage: storage,
-      laundry: laundry
+      laundry: laundry,
+      foreign_user_id : foreign_user_id
     },{
       where: {
         review_id: review_id

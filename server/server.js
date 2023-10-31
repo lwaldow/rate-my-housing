@@ -26,7 +26,7 @@ app.post("/users", async (req, res) => {
     catch(err) {
         res.json(err)
     }
-})
+});
 
 app.post("/complexes", async (req, res) => {
     const args = req.body
@@ -37,7 +37,7 @@ app.post("/complexes", async (req, res) => {
     catch(err) {
         res.json(err)
     }
-})
+});
 
 app.post("/addresses", async (req, res) => {
     const args = req.body
@@ -49,19 +49,43 @@ app.post("/addresses", async (req, res) => {
     catch(err) {
         res.json(err)
     }
-})
+});
 
-app.post("/review", async (req, res) => {
+app.post("/reviews", async (req, res) => {
     const args = req.body
 
     try {
-        const newReview = await controller.insertReview(args.text_review,args.kitchen,args.tag,args.bathroom,args.parking,args.location,args.pet,args.storage,args.laundry)
+        const newReview = await controller.insertReview(args.text_review,args.kitchen,args.tag,args.bathroom,args.parking,args.location,args.pet,args.storage,args.laundry,args.foreign_user_id)
         res.status(201).json(newReview)
     }
     catch(err) {
         res.json(err)
     }
-})
+});
+
+app.put("/reviews", async (req, res) => {
+    const args = req.body
+
+    try {
+        const editReview = await controller.editReview(args.text_review,args.kitchen,args.tag,args.bathroom,args.parking,args.location,args.pet,args.storage,args.laundry,args.foreign_user_id)
+        res.status(201).json(editReview)
+    }
+    catch(err) {
+        res.json(err)
+    }
+});
+
+app.get("/search_reviews", async (req, res) => {
+    const args = req.body
+
+    try {
+        const editReview = await controller.editReview(args.kitchen_l,args.kitchen_h,args.bathroom_l,args.bathroom_h,args.parking_l,args.parking_h,args.location_l,args.location_h,args.pet_l,args.pet_h,args.storage_l,args.storage_h,args.laundry_l,args.laundry_h)
+        res.status(201).json(editReview)
+    }
+    catch(err) {
+        res.json(err)
+    }
+});
 
 app.listen(PORT, () => {
     console.log(`Server started on ${PORT}`);
