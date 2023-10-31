@@ -1,1 +1,0 @@
-self.__NEXT_FONT_MANIFEST="{\"pages\":{},\"app\":{\"/Users/piyushmaheshwari/rate-my-housing/rate-my-housing/app/layout\":[\"static/media/c9a5bc6a7c948fb0-s.p.woff2\",\"static/media/b1f9bad2c559bea7-s.p.woff2\"]},\"appUsingSizeAdjust\":true,\"pagesUsingSizeAdjust\":false}"
