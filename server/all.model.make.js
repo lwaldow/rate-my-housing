@@ -1,6 +1,7 @@
 const { Sequelize, DataTypes } = require("sequelize");
-const {User, Review, Complex, Address} = require('./all.model.js')
 require('dotenv').config();
+const models = require('./all.model.js')
+
 
 
 
@@ -15,12 +16,16 @@ const sequelize = new Sequelize(
     }
   );
 
-
 sequelize.authenticate().then(() => {
     console.log('ORM Connection has been established successfully.');
  }).catch((error) => {
     console.error('ORM Unable to connect to the database: ', error);
  });
+
+models.User.sync()
+models.Complex.sync()
+models.Address.sync()
+models.Review.sync()
 
  sequelize.sync().then(() => {
     console.log('all table created successfully!');
