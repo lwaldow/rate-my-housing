@@ -1,5 +1,8 @@
 'use client'
 
+import IconButton from "@mui/material/IconButton";
+import SearchIcon from "@mui/icons-material/Search";
+import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
 import InputLabel from "@mui/material/InputLabel";
@@ -7,91 +10,71 @@ import MenuItem from "@mui/material/MenuItem";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import React from "react";
 
-export default function Filterbar() {
-    const [age, setAge] = React.useState('');
 
-    const handleChange = (event: SelectChangeEvent) => {
-        setAge(event.target.value);
+export default function Filterbar() {
+
+    const [searchQuery, setSearchQuery] = React.useState("");
+
+    const [availableOnly, setAvailableOnly] = React.useState<boolean>(true);
+
+    const handleFilterChangeAvailableOnly = (event: SelectChangeEvent) => {
+        setAvailableOnly(event.target.value === "true" ? true : false);
     };
-    
+
+    interface SearchBarProps {
+        setSearchQuery: Function
+    }
+
+    const SearchBar = ({setSearchQuery}:SearchBarProps) => (
+        <form>
+          <TextField
+            id="search-bar"
+            className="text"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              setSearchQuery(e.target.value);
+            }}
+            label="Enter a listing name"
+            variant="outlined"
+            placeholder="Search..."
+            size="small"
+          />
+          <IconButton type="submit" aria-label="search">
+            <SearchIcon style={{ fill: "blue" }} />
+          </IconButton>
+        </form>
+      );      
+
     return (
-        <div className="flex justify-between border-gray-400 p-4">
-            <FormControl sx={{ m: 1, minWidth: 120 }} disabled>
-                <InputLabel id="demo-simple-select-disabled-label">Age</InputLabel>
-                <Select
-                    labelId="demo-simple-select-disabled-label"
-                    id="demo-simple-select-disabled"
-                    value={age}
-                    label="Age"
-                    onChange={handleChange}
-                >
-                    <MenuItem value="">
-                        <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-                <FormHelperText>Disabled</FormHelperText>
-            </FormControl>
-            <FormControl sx={{ m: 1, minWidth: 120 }} error>
-                <InputLabel id="demo-simple-select-error-label">Age</InputLabel>
-                <Select
-                    labelId="demo-simple-select-error-label"
-                    id="demo-simple-select-error"
-                    value={age}
-                    label="Age"
-                    onChange={handleChange}
-                    renderValue={(value) => `⚠️  - ${value}`}
-                >
-                    <MenuItem value="">
-                        <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-                <FormHelperText>Error</FormHelperText>
-            </FormControl>
-            <FormControl sx={{ m: 1, minWidth: 120 }}>
-                <InputLabel id="demo-simple-select-readonly-label">Age</InputLabel>
-                <Select
-                    labelId="demo-simple-select-readonly-label"
-                    id="demo-simple-select-readonly"
-                    value={age}
-                    label="Age"
-                    onChange={handleChange}
-                    inputProps={{ readOnly: true }}
-                >
-                    <MenuItem value="">
-                        <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-                <FormHelperText>Read only</FormHelperText>
-            </FormControl>
-            <FormControl required sx={{ m: 1, minWidth: 120 }}>
-                <InputLabel id="demo-simple-select-required-label">Age</InputLabel>
-                <Select
-                    labelId="demo-simple-select-required-label"
-                    id="demo-simple-select-required"
-                    value={age}
-                    label="Age *"
-                    onChange={handleChange}
-                >
-                    <MenuItem value="">
-                        <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-                <FormHelperText>Required</FormHelperText>
-            </FormControl>
-            <p>Helloworld</p>
-            <p>Hellowrodl</p>
+        <div className="flex justify-between items-center border-gray-400 p-4">
+            <SearchBar setSearchQuery={setSearchQuery}/>
+            <div className="flex items-center justify-end">
+                <FormControl sx={{ m: 1, minWidth: 120 }}>
+                    <InputLabel id="filter-select-available">Availability</InputLabel>
+                    <Select
+                        labelId="filter-select-available"
+                        id="filter-select"
+                        value={availableOnly ? "true" : "false"}
+                        label="Availability"
+                        onChange={handleFilterChangeAvailableOnly}
+                    >
+                        <MenuItem value={"true"}>Available Only</MenuItem>
+                        <MenuItem value={"false"}>All Listings</MenuItem>
+                    </Select>
+                </FormControl>
+                <FormControl sx={{ m: 1, minWidth: 120 }}>
+                    <InputLabel id="filter-select-available">Availability</InputLabel>
+                    <Select
+                        labelId="filter-select-available"
+                        id="filter-select"
+                        value={availableOnly ? "true" : "false"}
+                        label="Availability"
+                        onChange={handleFilterChangeAvailableOnly}
+                    >
+                        <MenuItem value={"true"}>Available Only</MenuItem>
+                        <MenuItem value={"false"}>All Listings</MenuItem>
+                    </Select>
+                </FormControl>
+            </div>
         </div>
     )
 }
