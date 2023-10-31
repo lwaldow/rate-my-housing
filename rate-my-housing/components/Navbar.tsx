@@ -16,12 +16,12 @@ export default function Navbar() {
         <>
             <nav className="bg-white border-gray-300 p-4 drop-shadow-sm pl-8 pr-8">
                 <div className="flex justify-between items-center">
-                    <img
-                    src="/favicon.ico"
-                    alt="Logo"
-                    className="w-12 h-12 mr-0.1" // Adjust the width and height as needed
-                    />
-                    <Link href="/" className={playfair.className}>
+                    <Link href="/" className={playfair.className + " flex items-center"}>
+                        <img
+                        src="/favicon.ico"
+                        alt="Logo"
+                        className="w-12 h-12 mr-0.1" // Adjust the width and height as needed
+                        />
                         <span className="text-self-center whitespace-nowrap text-3xl font-extrabold text-maroon">RateMy</span>
                         <span className="text-self-center whitespace-nowrap text-3xl font-extrabold text-slate-700">Housing</span>
                     </Link>
