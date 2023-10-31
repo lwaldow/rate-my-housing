@@ -14,13 +14,6 @@ const User = sequelize.define("users", {
    }
 });
 
-
-// sequelize.sync().then(() => {
-//    console.log('User table created successfully!');
-// }).catch((error) => {
-//    console.error('Unable to create table : ', error);
-// });
-
 // block 2
 
 const Complex = sequelize.define("complexes", {
@@ -36,13 +29,6 @@ const Complex = sequelize.define("complexes", {
       primaryKey: true,
     }
  });
- 
-//  sequelize.sync().then(() => {
-//     console.log('complex table created successfully!');
-//  }).catch((error) => {
-//     console.error('Unable to create table : ', error);
-//  });
-
 
 const Address = sequelize.define("addresses", {
     state: {
@@ -70,13 +56,6 @@ const Address = sequelize.define("addresses", {
 //      type: DataTypes.UUID
 //    }
 //  });
-
-// sequelize.sync().then(() => {
-//    console.log('address table created successfully!');
-// }).catch((error) => {
-//    console.error('Unable to create table : ', error);
-// });
-
 // block 3
 
 const Review = sequelize.define("reviews", {
@@ -115,12 +94,12 @@ const Review = sequelize.define("reviews", {
   }
 });
 
-// User.hasMany(Review, {
-//    foreignKey: {
-//      name: 'foreign_user_id',
-//      type: DataTypes.UUID
-//    }
-//  });
+User.hasMany(Review, {
+   foreignKey: {
+     name: 'foreign_user_id',
+     type: DataTypes.UUID
+   }
+ });
 
 
 // sequelize.sync().then(() => {
@@ -130,3 +109,4 @@ const Review = sequelize.define("reviews", {
 // });
 
 module.exports = {User, Complex, Review, Address}
+console.log('|||||||||||||||||||||')

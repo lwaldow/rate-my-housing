@@ -1,12 +1,13 @@
 const { Sequelize, DataTypes } = require("sequelize");
+require('dotenv').config();
 
 const sequelize = new Sequelize(
-  'rmh_db',
-  'postgres',
-  'postgres',
+  process.env.POSTGRESQL_DB,
+  process.env.POSTGRESQL_DB_USER,
+  process.env.POSTGRESQL_DB_PASSWORD,
   {
-    host: 'localhost',
-    port: 5432,
+    host: process.env.POSTGRESQL_DB_HOST,
+    port: process.env.POSTGRESQL_DB_PORT,
     dialect: 'postgres'
   }
 );
