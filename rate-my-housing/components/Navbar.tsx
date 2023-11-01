@@ -27,7 +27,7 @@ export default function Navbar() {
                     </Link>
                     <div>
                         <Link href="/about" className="text-self-center text-1xl font-bold text-maroon underline mr-2">About</Link>
-                        <a onClick={handleOpen} className="text-self-center text-1xl font-bold text-maroon underline mr-2">Log In</a>
+                        <a onClick={handleOpen} className=" cursor-pointer text-self-center text-1xl font-bold text-maroon underline mr-2">Log In</a>
                         <Link href="/signup" className="text-self-center text-1xl font-bold text-maroon underline">Sign Up</Link>
                     </div>
                 </div>
