@@ -23,13 +23,13 @@ export default function SearchResultsLayout({ complexes }: SearchResultsLayoutPr
       <Card
         key={complex.complex_id}
       >
-        <CardContent sx={{cursor: 'pointer', mb: 8}}>
+        <CardContent sx={{cursor: 'pointer', mb: 14}}>
           <Typography variant="h5">{complex.name}</Typography>
-          <Typography sx={{fontsize:14}}>{complex.management}</Typography>
-          <Typography sx={{fontsize:14}}>{complex.createdAt.substring(0,10)}</Typography>
+          <Typography sx={{fontsize:16}}>{complex.management}</Typography>
+          <Typography sx={{fontsize:16}}>{complex.createdAt.substring(0,10)}</Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">Contact</Button>
+          <Button size="medium">Contact</Button>
         </CardActions>
       </Card>
     );
