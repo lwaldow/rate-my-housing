@@ -5,16 +5,35 @@ import Filterbar from '@/components/Filterbar';
 import Image from 'next/image';
 import Stack from '@mui/material/Stack';
 import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import { Button, CardActions, Typography } from '@mui/material';
 
 interface SearchResultsLayoutProps {
-    complexes: object
+  complexes: Array<object>
 }
 
-export default function SearchResultsLayout({complexes}:SearchResultsLayoutProps) {
+export default function SearchResultsLayout({ complexes }: SearchResultsLayoutProps) {
 
   const [searchQuery, setSearchQuery] = React.useState("");
 
   const [availableOnly, setAvailableOnly] = React.useState<boolean>(false);
+
+  const listingComponents = complexes.map((complex: any) => {
+    return (
+      <Card
+        key={complex.complex_id}
+      >
+        <CardContent sx={{cursor: 'pointer', mb: 8}}>
+          <Typography variant="h5">{complex.name}</Typography>
+          <Typography sx={{fontsize:14}}>{complex.management}</Typography>
+          <Typography sx={{fontsize:14}}>{complex.createdAt.substring(0,10)}</Typography>
+        </CardContent>
+        <CardActions>
+          <Button size="small">Contact</Button>
+        </CardActions>
+      </Card>
+    );
+  })
 
   return (
     <>
@@ -26,18 +45,10 @@ export default function SearchResultsLayout({complexes}:SearchResultsLayoutProps
       />
       <div className='flex flex-grow max-h-full overflow-hidden p-1'>
         <Card className='basis-1/2 relative bg-gray-300'>
-          <Image src="/favicon.ico" width={300} height={300} alt="Map"/>
+          <Image src="/favicon.ico" width={300} height={300} alt="Map" />
         </Card>
         <Stack className='basis-1/2 p-2 overflow-auto max-h-full' spacing={2}>
-          <Card sx={{minHeight: 220}}>
-            Abcdef
-          </Card>
-          <Card sx={{minHeight: 220}}>
-            Abcdef
-          </Card>
-          <Card sx={{minHeight: 220}}>
-            Abcdef
-          </Card>
+          {listingComponents}
         </Stack>
       </div>
     </>
