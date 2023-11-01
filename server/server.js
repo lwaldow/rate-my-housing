@@ -1,11 +1,13 @@
 const express = require('express');
 const app = express();
+const cors = require('cors')
 const PORT = 8080;
 const {sequelize, connectToDB} = require('./db')
 const {User, Review, Complex, Address} = require('./all.model')
 const controller  = require('./all.controller.js')
 const body_parser = require('body-parser')
 
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
