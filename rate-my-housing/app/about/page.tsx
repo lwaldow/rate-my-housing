@@ -1,15 +1,18 @@
 import React from 'react';
 import Head from 'next/head';
 import { Playfair_Display } from 'next/font/google'
+import { Metadata } from 'next';
 const playfair = Playfair_Display({ subsets: ['latin'], weight: ['900'] })
 
+export const metadata: Metadata = {
+  title: 'About RateMyHousing',
+  description: 'CS320 Group 4',
+}
 
 export default function About() {
   return (
     <div className="bg-gray-100 py-4">
-      <Head>
-        <title>About RateMyHousing</title>
-      </Head>
+
       <div className="container mx-auto p-4">
       <img
           src="/ratemyhousingpicture.jpeg"

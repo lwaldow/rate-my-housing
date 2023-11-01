@@ -14,7 +14,7 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="bg-white border-gray-300 p-4 drop-shadow-sm pl-8 pr-8">
+            <nav className="bg-white border-b border-gray-400 p-4 pl-8 pr-8">
                 <div className="flex justify-between items-center">
                     <Link href="/" className={playfair.className + " flex items-center"}>
                         <img

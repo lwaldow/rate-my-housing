@@ -22,14 +22,17 @@ export default function Filterbar() {
     };
 
     interface SearchBarProps {
+        searchQuery: string
         setSearchQuery: Function
     }
 
-    const SearchBar = ({setSearchQuery}:SearchBarProps) => (
+    const SearchBar = ({searchQuery, setSearchQuery}:SearchBarProps) => (
         <form>
           <TextField
+            sx={{minWidth: 400}}
             id="search-bar"
             className="text"
+            value={searchQuery}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setSearchQuery(e.target.value);
             }}
@@ -45,10 +48,10 @@ export default function Filterbar() {
       );      
 
     return (
-        <div className="flex justify-between items-center border-gray-400 p-4">
-            <SearchBar setSearchQuery={setSearchQuery}/>
+        <div className="flex justify-between items-center pl-4 pr-4 border-b border-gray-400">
+            <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
             <div className="flex items-center justify-end">
-                <FormControl sx={{ m: 1, minWidth: 120 }}>
+                <FormControl sx={{ m: 1, minWidth: 180 }}>
                     <InputLabel id="filter-select-available">Availability</InputLabel>
                     <Select
                         labelId="filter-select-available"
@@ -56,12 +59,13 @@ export default function Filterbar() {
                         value={availableOnly ? "true" : "false"}
                         label="Availability"
                         onChange={handleFilterChangeAvailableOnly}
+                        size="small"
                     >
                         <MenuItem value={"true"}>Available Only</MenuItem>
                         <MenuItem value={"false"}>All Listings</MenuItem>
                     </Select>
                 </FormControl>
-                <FormControl sx={{ m: 1, minWidth: 120 }}>
+                <FormControl sx={{ m: 1, minWidth: 180 }}>
                     <InputLabel id="filter-select-available">Availability</InputLabel>
                     <Select
                         labelId="filter-select-available"
@@ -69,6 +73,7 @@ export default function Filterbar() {
                         value={availableOnly ? "true" : "false"}
                         label="Availability"
                         onChange={handleFilterChangeAvailableOnly}
+                        size="small"
                     >
                         <MenuItem value={"true"}>Available Only</MenuItem>
                         <MenuItem value={"false"}>All Listings</MenuItem>
