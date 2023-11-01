@@ -1,23 +1,5 @@
-const { Sequelize, DataTypes } = require("sequelize");
-require('dotenv').config();
-
-const sequelize = new Sequelize(
-    process.env.POSTGRESQL_DB,
-    process.env.POSTGRESQL_DB_USER,
-    process.env.POSTGRESQL_DB_PASSWORD,
-    {
-      host: process.env.POSTGRESQL_DB_HOST,
-      port: process.env.POSTGRESQL_DB_PORT,
-      "dialect": 'postgres'
-    }
-  );
-
-
-// sequelize.authenticate().then(() => {
-//     console.log('ORM Connection has been established successfully.');
-//  }).catch((error) => {
-//     console.error('ORM Unable to connect to the database: ', error);
-//  });
+const { sequelize } = require("./db");
+const {DataTypes} = require('sequelize');
 
 // block 1
 
@@ -31,9 +13,6 @@ const User = sequelize.define("users", {
       primaryKey: true,
    }
 });
-
-
-
 
 // block 2
 
@@ -50,9 +29,6 @@ const Complex = sequelize.define("complexes", {
       primaryKey: true,
     }
  });
- 
-
-
 
 const Address = sequelize.define("addresses", {
     state: {
@@ -80,9 +56,6 @@ Complex.hasMany(Address, {
      type: DataTypes.UUID
    }
  });
-
-
-
 // block 3
 
 const Review = sequelize.define("reviews", {
@@ -129,6 +102,5 @@ User.hasMany(Review, {
  });
 
 
+module.exports = {User, Complex, Review, Address}
 console.log('|||||||||||||||||||||')
-
-module.exports =  {User, Address, Complex, Review};
