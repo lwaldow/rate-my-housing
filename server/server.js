@@ -29,6 +29,12 @@ app.post("/users", async (req, res) => {
     }
 });
 
+// get complexes
+app.get("/complexes", async (req, res) => {
+    const complexes = await Complex.findAll();
+    res.status(200).json(complexes);
+});
+
 app.post("/complexes", async (req, res) => {
     const args = req.body
     try {
