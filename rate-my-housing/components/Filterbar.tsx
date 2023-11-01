@@ -10,12 +10,14 @@ import MenuItem from "@mui/material/MenuItem";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import React from "react";
 
+interface FilterProps {
+    searchQuery: string
+    setSearchQuery: Function
+    availableOnly: boolean
+    setAvailableOnly: Function
+  }
 
-export default function Filterbar() {
-
-    const [searchQuery, setSearchQuery] = React.useState("");
-
-    const [availableOnly, setAvailableOnly] = React.useState<boolean>(true);
+export default function Filterbar({searchQuery, setSearchQuery, availableOnly, setAvailableOnly}:FilterProps) {
 
     const handleFilterChangeAvailableOnly = (event: SelectChangeEvent) => {
         setAvailableOnly(event.target.value === "true" ? true : false);
@@ -51,7 +53,7 @@ export default function Filterbar() {
         <div className="flex justify-between items-center pl-4 pr-4 border-b border-gray-400">
             <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
             <div className="flex items-center justify-end">
-                <FormControl sx={{ m: 1, minWidth: 180 }}>
+                <FormControl sx={{ m: 1, minWidth: 180 }} disabled>
                     <InputLabel id="filter-select-available">Availability</InputLabel>
                     <Select
                         labelId="filter-select-available"
@@ -65,7 +67,7 @@ export default function Filterbar() {
                         <MenuItem value={"false"}>All Listings</MenuItem>
                     </Select>
                 </FormControl>
-                <FormControl sx={{ m: 1, minWidth: 180 }}>
+                <FormControl sx={{ m: 1, minWidth: 180 }} disabled>
                     <InputLabel id="filter-select-available">Availability</InputLabel>
                     <Select
                         labelId="filter-select-available"

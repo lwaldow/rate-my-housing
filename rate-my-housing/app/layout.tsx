@@ -17,9 +17,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className='h-full m-0'>
       <CssBaseline/>
-      <body className={inter.className}>
+      <body className={inter.className + " max-h-full min-h-full flex flex-col items-stretch justify-stretch m-0"}>
         <Navbar/>
         {children}
       </body>
