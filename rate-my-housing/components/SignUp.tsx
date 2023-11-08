@@ -26,12 +26,12 @@ const style = {
     p: 4,
 };
 
-interface SignInModalProps {
+interface SignUpModalProps {
     open: boolean;
     handleClose: (event: object, reason: string) => void;
 }
 
-export default function SignInModal({ open, handleClose }: SignInModalProps) {
+export default function SignUpModal({ open, handleClose }: SignUpModalProps) {
 
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {

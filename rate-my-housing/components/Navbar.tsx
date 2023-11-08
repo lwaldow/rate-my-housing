@@ -3,14 +3,23 @@
 import Link from "next/link"
 import { Playfair_Display } from 'next/font/google'
 import React from "react";
-import SignInModal from "./SignIn";
+import LogInModal from "./LogIn";
+import SignUpModal from "./SignUp";
 const playfair = Playfair_Display({ subsets: ['latin'], weight: ['900'] })
 
 
 export default function Navbar() {
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const [loginOpen, setLoginOpen] = React.useState(false);
+    const [signupOpen, setSignupOpen] = React.useState(false);
+
+    const handleLoginOpen = () => setLoginOpen(true);
+    const handleSignupOpen = () => setSignupOpen(true);
+
+    const handleClose = () => {
+        setLoginOpen(false);
+        setSignupOpen(false);
+    };
+
 
     return (
         <>
@@ -27,13 +36,14 @@ export default function Navbar() {
                     </Link>
                     <div>
                         <Link href="/about" className="text-self-center text-1xl font-bold text-maroon underline mr-2">About</Link>
-                        <a onClick={handleOpen} className=" cursor-pointer text-self-center text-1xl font-bold text-maroon underline mr-2">Log In</a>
-                        <a onClick={handleOpen} className="text-self-center text-1xl font-bold text-maroon underline">Sign Up</a>
+                        <a onClick={handleLoginOpen} className=" cursor-pointer text-self-center text-1xl font-bold text-maroon underline mr-2">Log In</a>
+                        <a onClick={handleSignupOpen} className="cursor-pointer text-self-center text-1xl font-bold text-maroon underline">Sign Up</a>
                     </div>
                 </div>
             </nav>
-            <SignInModal open={open} handleClose={handleClose} />
+            <LogInModal open={loginOpen} handleClose={handleClose} />
+            <SignUpModal open={signupOpen} handleClose={handleClose} />
         </>
-    )
+    );
 }
 

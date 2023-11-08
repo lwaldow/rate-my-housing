@@ -26,14 +26,14 @@ const style = {
     p: 4,
 };
 
-interface SignInModalProps {
+interface LogInModalProps {
     open: boolean;
     handleClose: (event: object, reason: string) => void;
+    openSignUpModal: () => void;
 }
 
-export default function SignInModal({ open, handleClose }: SignInModalProps) {
+export default function LogInModal({ open, handleClose }: LogInModalProps) {
 
-    
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -66,7 +66,7 @@ export default function SignInModal({ open, handleClose }: SignInModalProps) {
                             <LockOutlinedIcon />
                         </Avatar>
                         <Typography component="h1" variant="h5">
-                            Sign in
+                            Log in
                         </Typography>
                         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                             <TextField
