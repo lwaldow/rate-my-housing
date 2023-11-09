@@ -7,6 +7,7 @@ import Stack from '@mui/material/Stack';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import { Button, CardActions, Typography } from '@mui/material';
+import Link from 'next/link';
 
 interface SearchResultsLayoutProps {
   complexes: Array<object>
@@ -26,9 +27,10 @@ export default function SearchResultsLayout({ complexes }: SearchResultsLayoutPr
         <CardContent sx={{cursor: 'pointer', mb: 14}}>
           <Typography variant="h5">{complex.name}</Typography>
           <Typography sx={{fontsize:16}}>{complex.management}</Typography>
+          <Typography sx={{fontsize:16}}>{"ID: " + complex.complex_id}</Typography>
         </CardContent>
         <CardActions>
-          <Button size="medium">Contact</Button>
+          <Link href={`/listings/${complex.complex_id}/`}>About</Link>
         </CardActions>
       </Card>
     );

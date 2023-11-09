@@ -7,7 +7,7 @@ import SearchResultsLayout from '@/components/SearchResultsLayout';
 
 const places = [
   {
-    complex_id: "id",
+    complex_id: "12345",
     name: "Test place",
     management: "managers",
   },
