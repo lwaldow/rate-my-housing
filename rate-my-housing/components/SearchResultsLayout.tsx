@@ -26,7 +26,6 @@ export default function SearchResultsLayout({ complexes }: SearchResultsLayoutPr
         <CardContent sx={{cursor: 'pointer', mb: 14}}>
           <Typography variant="h5">{complex.name}</Typography>
           <Typography sx={{fontsize:16}}>{complex.management}</Typography>
-          <Typography sx={{fontsize:16}}>{complex.createdAt.substring(0,10)}</Typography>
         </CardContent>
         <CardActions>
           <Button size="medium">Contact</Button>
