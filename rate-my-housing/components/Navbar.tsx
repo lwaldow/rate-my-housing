@@ -41,7 +41,7 @@ export default function Navbar() {
                     </div>
                 </div>
             </nav>
-            <LogInModal open={loginOpen} handleClose={handleClose} />
+            <LogInModal open={loginOpen} handleClose={handleClose} openSignUpModal={handleSignupOpen} />
             <SignUpModal open={signupOpen} handleClose={handleClose} />
         </>
     );
