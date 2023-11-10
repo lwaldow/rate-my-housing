@@ -10,7 +10,10 @@ export default function RootLayout({ complex }: { complex: Complex }) {
     return (
         <Card key={complex.complex_id}>
             <CardContent sx={{ cursor: 'pointer', mb: 14 }}>
-                <Typography variant="h5">{complex.name}</Typography>
+                <div className='text-lg flex justify-between'>
+                    <span>{complex.name + ' '}</span>
+                    <span className='font-bold'>X Stars</span>
+                </div>
                 <Typography sx={{ fontSize: 16 }}>{complex.management}</Typography>
                 <Typography sx={{ fontSize: 16 }}>{"ID: " + complex.complex_id}</Typography>
             </CardContent>
