@@ -8,9 +8,10 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import { Button, CardActions, Typography } from '@mui/material';
 import Link from 'next/link';
+import SearchListingCard from './SearchListingCard';
 
 interface SearchResultsLayoutProps {
-  complexes: Array<object>
+  complexes: Array<Complex>
 }
 
 export default function SearchResultsLayout({ complexes }: SearchResultsLayoutProps) {
@@ -19,21 +20,8 @@ export default function SearchResultsLayout({ complexes }: SearchResultsLayoutPr
 
   const [availableOnly, setAvailableOnly] = React.useState<boolean>(false);
 
-  const listingComponents = complexes.map((complex: any) => {
-    return (
-      <Card
-        key={complex.complex_id}
-      >
-        <CardContent sx={{cursor: 'pointer', mb: 14}}>
-          <Typography variant="h5">{complex.name}</Typography>
-          <Typography sx={{fontsize:16}}>{complex.management}</Typography>
-          <Typography sx={{fontsize:16}}>{"ID: " + complex.complex_id}</Typography>
-        </CardContent>
-        <CardActions>
-          <Link href={`/listings/${complex.complex_id}/`}>About</Link>
-        </CardActions>
-      </Card>
-    );
+  const listingComponents = complexes.map((complex: Complex) => {
+    return <SearchListingCard complex={complex} />
   })
 
   return (
