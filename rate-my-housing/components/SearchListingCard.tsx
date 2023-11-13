@@ -7,6 +7,21 @@ import Link from 'next/link';
 
 
 export default function RootLayout({ complex }: { complex: Complex }) {
+    const buttonStyle = {
+        padding: '8px',
+        fontSize: '15px',
+        fontWeight: 'bold',
+        backgroundColor: 'maroon',
+        color: 'white',
+        border: 'none',
+        borderRadius: '5px',
+        cursor: 'pointer',
+        textDecoration: 'none',
+        display: 'inline-block',
+        textAlign: 'center',
+        lineHeight: '1.5'
+      };
+
     return (
         <Card key={complex.complex_id}>
             <CardContent sx={{ cursor: 'pointer', mb: 14 }}>
@@ -18,7 +33,7 @@ export default function RootLayout({ complex }: { complex: Complex }) {
                 <Typography sx={{ fontSize: 16 }}>{"ID: " + complex.complex_id}</Typography>
             </CardContent>
             <CardActions>
-                <Link href={`/listings/${complex.complex_id}/`}>About</Link>
+                <Link href={`/listings/${complex.complex_id}/`}style={buttonStyle}>About Me</Link>
             </CardActions>
         </Card>
     )
