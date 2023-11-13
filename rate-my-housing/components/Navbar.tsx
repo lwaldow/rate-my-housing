@@ -66,7 +66,7 @@ export default function Navbar() {
                     </Link>
                     <div>
                         <Link href="/about" className="text-self-center text-1xl font-bold text-maroon underline mr-2">About</Link>
-                        <Link href="/about" className="text-self-center text-1xl font-bold text-maroon underline mr-2">Add Listing</Link>
+                        <Link href="/rate" className="text-self-center text-1xl font-bold text-maroon underline mr-2">Add Listing</Link>
                         <a onClick={handleLoginOpen} style={logInButtonStyle}>Log In</a>
                         <a onClick={handleSignupOpen} style={signUpButtonStyle}>Sign Up</a>
                     </div>
