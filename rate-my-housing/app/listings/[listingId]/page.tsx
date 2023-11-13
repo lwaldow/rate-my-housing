@@ -15,7 +15,7 @@ const Card = ({ overallRating, content, reviewCount, style }) => {
         padding: '20px',
         margin: '20px',
         boxShadow: '0 4px 6px rgba(0, 0, 0, 0.3)',
-        ...style, // Apply additional styles passed through the style prop
+        ...style,
       }}
     >
      <h2>Overall: {overallRating}</h2>
@@ -38,6 +38,7 @@ const Card = ({ overallRating, content, reviewCount, style }) => {
 export default function Page({ params }: { params: { listingId: string } }) {
   const galleryImages: string[] = [];
 
+  //can change later with what is being rated
   const categories = [
     { title: 'Overall', rating: 4.0 },
     { title: 'Reputation', rating: 4.8 },
@@ -53,7 +54,8 @@ export default function Page({ params }: { params: { listingId: string } }) {
       <span className={playfair.className} style={{ fontSize: '40px' }}>
         ListingName: {params.listingId}
       </span>
-      {/* Rate Me and Compare Me buttons */}
+      {/* link to another page */}
+      {/* rate me and compare me buttons */}
       <div style={{ marginTop: '20px' }}>
         <button style={{ padding: '10px', fontSize: '16px', fontWeight: 'bold', backgroundColor: 'maroon', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', marginRight: '10px' }}>
           Rate Me
@@ -63,7 +65,7 @@ export default function Page({ params }: { params: { listingId: string } }) {
         </button>
       </div>
 
-      {/* Categories with star ratings */}
+      {/* categories with star ratings */}
       <div style={{ display: 'flex', flexWrap: 'wrap', marginTop: '50px' }}>
         {categories.map((category, index) => (
           <div key={index} style={{ marginRight: '50px', marginBottom: '50px' }}>
@@ -89,11 +91,11 @@ export default function Page({ params }: { params: { listingId: string } }) {
         ))}
       </div>
 
-      {/* Gallery of images */}
+      {/* gallery of images */}
       <div style={{ border: '5px solid #ccc', padding: '80px', marginTop: '25px' }}>
-        {/* Check if there are images in the gallery */}
+        {/* check if there are images in the gallery */}
         {galleryImages.length > 0 ? (
-          // Map over the gallery images
+          // map over the gallery images
           galleryImages.map((imageUrl, index) => (
             <img
               key={index}
@@ -103,12 +105,12 @@ export default function Page({ params }: { params: { listingId: string } }) {
             />
           ))
         ) : (
-          // When there are no current pictures of the listing
+          // when there are no current pictures of the listing
           <p>No images available yet.</p>
         )}
       </div>
 
-      {/* Reviews using Card component */}
+      {/* reviews using card component */}
       <div>
         <Card overallRating="1" content="Review 1" style={{ fontSize: '20px', fontWeight: 'normal' }} />
         <Card overallRating="2" content="Review 2" style={{ fontSize: '20px', fontWeight: 'normal' }} />
