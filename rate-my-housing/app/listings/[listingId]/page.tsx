@@ -1,4 +1,8 @@
 import { useRouter } from 'next/router';
+import { Playfair_Display } from 'next/font/google';
+const playfair = Playfair_Display({ subsets: ['latin'], weight: ['900'] })
+import React from "react";
+import Link from "next/link"
 
 const Card = ({ overallRating, content, reviewCount, style }) => {
   const forNow = 3;
@@ -45,9 +49,10 @@ export default function Page({ params }: { params: { listingId: string } }) {
   ];
 
   return (
-    <div style={{ fontSize: '30px', fontWeight: 'bold' }}>
-      ListingName: {params.listingId}
-
+    <div style={{fontSize: '20px', fontWeight: 'bold' }}>
+      <span className={playfair.className} style={{ fontSize: '40px' }}>
+        ListingName: {params.listingId}
+      </span>
       {/* Rate Me and Compare Me buttons */}
       <div style={{ marginTop: '20px' }}>
         <button style={{ padding: '10px', fontSize: '16px', fontWeight: 'bold', backgroundColor: 'maroon', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', marginRight: '10px' }}>
