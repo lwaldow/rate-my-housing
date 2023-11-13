@@ -49,6 +49,19 @@ export default function Page({ params }: { params: { listingId: string } }) {
     { title: 'Transportation', rating: 2.8 },
   ];
 
+  const rateButtonStyle = {
+    padding: '10px', 
+    fontSize: '16px', 
+    fontWeight: 'bold', 
+    backgroundColor: 'maroon', 
+    color: 'white', 
+    border: 'None', 
+    borderRadius: '5px', 
+    cursor: 'pointer'
+  };
+
+
+
   return (
     <div style={{fontSize: '20px', fontWeight: 'bold' }}>
       <span className={playfair.className} style={{ fontSize: '40px' }}>
@@ -57,9 +70,7 @@ export default function Page({ params }: { params: { listingId: string } }) {
       {/* link to another page */}
       {/* rate me and compare me buttons */}
       <div style={{ marginTop: '20px' }}>
-        <button style={{ padding: '10px', fontSize: '16px', fontWeight: 'bold', backgroundColor: 'maroon', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', marginRight: '10px' }}>
-          Rate Me
-        </button>
+        <Link href="/rate" style={rateButtonStyle}> Rate Me</Link>
         <button style={{ padding: '10px', fontSize: '16px', fontWeight: 'bold', backgroundColor: 'white', color: 'maroon', border: '2px solid maroon', borderRadius: '5px', cursor: 'pointer' }}>
           Compare Me
         </button>
