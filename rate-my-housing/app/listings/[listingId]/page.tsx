@@ -110,7 +110,7 @@ export default function Page({ params }: { params: { listingId: string } }) {
       </div>
 
       {/* gallery of images */}
-      <div style={{ border: '5px solid #ccc', padding: '80px', marginTop: '25px' }}>
+      <div style={{ border: '3px solid #ccc', padding: '175px', marginTop: '80px' }}>
         {/* check if there are images in the gallery */}
         {galleryImages.length > 0 ? (
           // map over the gallery images
