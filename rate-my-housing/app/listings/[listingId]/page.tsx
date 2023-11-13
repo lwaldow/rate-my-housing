@@ -60,6 +60,17 @@ export default function Page({ params }: { params: { listingId: string } }) {
     cursor: 'pointer'
   };
 
+  const compareButtonStyle = {
+    padding: '10px', 
+    fontSize: '16px', 
+    fontWeight: 'bold', 
+    backgroundColor: 'white', 
+    color: 'maroon', 
+    border: '2px solid maroon', 
+    borderRadius: '5px', 
+    cursor: 'pointer'
+  };
+
 
 
   return (
@@ -71,9 +82,7 @@ export default function Page({ params }: { params: { listingId: string } }) {
       {/* rate me and compare me buttons */}
       <div style={{ marginTop: '20px' }}>
         <Link href="/rate" style={rateButtonStyle}> Rate Me</Link>
-        <button style={{ padding: '10px', fontSize: '16px', fontWeight: 'bold', backgroundColor: 'white', color: 'maroon', border: '2px solid maroon', borderRadius: '5px', cursor: 'pointer' }}>
-          Compare Me
-        </button>
+        <Link href="/compare" style={compareButtonStyle}>Compare Me</Link>
       </div>
 
       {/* categories with star ratings */}
