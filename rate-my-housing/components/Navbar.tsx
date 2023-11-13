@@ -20,6 +20,21 @@ export default function Navbar() {
         setSignupOpen(false);
     };
 
+    const buttonStyle = {
+        padding: '8px',
+        fontSize: '15px',
+        fontWeight: 'bold',
+        backgroundColor: 'maroon',
+        color: 'white',
+        border: 'none',
+        borderRadius: '5px',
+        cursor: 'pointer',
+        textDecoration: 'none',
+        display: 'inline-block',
+        textAlign: 'center',
+        lineHeight: '1.5'
+      };
+
 
     return (
         <>
@@ -37,8 +52,8 @@ export default function Navbar() {
                     <div>
                         <Link href="/about" className="text-self-center text-1xl font-bold text-maroon underline mr-2">About</Link>
                         <Link href="/about" className="text-self-center text-1xl font-bold text-maroon underline mr-2">Add Listing</Link>
-                        <a onClick={handleLoginOpen} className=" cursor-pointer text-self-center text-1xl font-bold text-maroon underline mr-2">Log In</a>
-                        <a onClick={handleSignupOpen} className="cursor-pointer text-self-center text-1xl font-bold text-maroon underline">Sign Up</a>
+                        <a onClick={handleLoginOpen} style={buttonStyle}>Log In</a>
+                        <a onClick={handleSignupOpen} style={buttonStyle}>Sign Up</a>
                     </div>
                 </div>
             </nav>
