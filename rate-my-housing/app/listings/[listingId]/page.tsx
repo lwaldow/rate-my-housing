@@ -56,7 +56,7 @@ export default function Page({ params }: { params: { listingId: string } }) {
     backgroundColor: 'maroon', 
     color: 'white', 
     border: 'None', 
-    borderRadius: '5px', 
+    borderRadius: '7px', 
     cursor: 'pointer'
   };
 
@@ -71,14 +71,12 @@ export default function Page({ params }: { params: { listingId: string } }) {
     cursor: 'pointer'
   };
 
-
-
   return (
     <div style={{fontSize: '20px', fontWeight: 'bold' }}>
       <span className={playfair.className} style={{ fontSize: '40px' }}>
         ListingName: {params.listingId}
       </span>
-      {/* link to another page */}
+      {/* create rate and compare pages */}
       {/* rate me and compare me buttons */}
       <div style={{ marginTop: '20px' }}>
         <Link href="/rate" style={rateButtonStyle}> Rate Me</Link>
