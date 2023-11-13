@@ -47,7 +47,7 @@ export default function Navbar() {
         textDecoration: 'none',
         display: 'inline-block',
         textAlign: 'center',
-        lineHeight: '1.5'
+        lineHeight: '1.25'
       };
 
 

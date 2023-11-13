@@ -41,7 +41,7 @@ export default function Page({ params }: { params: { listingId: string } }) {
         <button style={{ padding: '10px', fontSize: '16px', fontWeight: 'bold', backgroundColor: 'maroon', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', marginRight: '10px' }}>
           Rate Me
         </button>
-        <button style={{ padding: '10px', fontSize: '16px', fontWeight: 'bold', backgroundColor: 'maroon', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+        <button style={{ padding: '10px', fontSize: '16px', fontWeight: 'bold', backgroundColor: 'white', color: 'maroon', border: '2px solid maroon', borderRadius: '5px', cursor: 'pointer' }}>
           Compare Me
         </button>
       </div>
