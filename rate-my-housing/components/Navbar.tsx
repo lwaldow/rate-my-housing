@@ -20,13 +20,28 @@ export default function Navbar() {
         setSignupOpen(false);
     };
 
-    const buttonStyle = {
+    const signUpButtonStyle = {
         padding: '8px',
         fontSize: '15px',
         fontWeight: 'bold',
         backgroundColor: 'maroon',
         color: 'white',
         border: 'none',
+        borderRadius: '5px',
+        cursor: 'pointer',
+        textDecoration: 'none',
+        display: 'inline-block',
+        textAlign: 'center',
+        lineHeight: '1.5'
+      };
+
+    const logInButtonStyle = {
+        padding: '8px',
+        fontSize: '15px',
+        fontWeight: 'bold',
+        backgroundColor: 'white',
+        color: 'maroon',
+        border: '2px solid maroon',
         borderRadius: '5px',
         cursor: 'pointer',
         textDecoration: 'none',
@@ -52,8 +67,8 @@ export default function Navbar() {
                     <div>
                         <Link href="/about" className="text-self-center text-1xl font-bold text-maroon underline mr-2">About</Link>
                         <Link href="/about" className="text-self-center text-1xl font-bold text-maroon underline mr-2">Add Listing</Link>
-                        <a onClick={handleLoginOpen} style={buttonStyle}>Log In</a>
-                        <a onClick={handleSignupOpen} style={buttonStyle}>Sign Up</a>
+                        <a onClick={handleLoginOpen} style={logInButtonStyle}>Log In</a>
+                        <a onClick={handleSignupOpen} style={signUpButtonStyle}>Sign Up</a>
                     </div>
                 </div>
             </nav>
