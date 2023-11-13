@@ -1,6 +1,8 @@
 import { useRouter } from 'next/router';
 
 const Card = ({ overallRating, content, reviewCount, style }) => {
+  const forNow = 3;
+
   return (
     <div
       style={{
@@ -12,7 +14,17 @@ const Card = ({ overallRating, content, reviewCount, style }) => {
         ...style, // Apply additional styles passed through the style prop
       }}
     >
-      <h2>Overall: {overallRating}</h2>
+     <h2>Overall: {overallRating}</h2>
+      <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+        {[...Array(forNow)].map((_, i) => (
+          <img
+            key={i}
+            src="/staricon.png"
+            alt="star"
+            style={{ width: '20px', height: '20px', marginRight: '5px' }}
+          />
+        ))}
+      </div>
       <p>Comment: {content}</p>
       <p>Reviews: {reviewCount}</p>
     </div>
