@@ -18,7 +18,7 @@ const Card = ({ overallRating, content, reviewCount, style }) => {
         ...style,
       }}
     >
-     <h2>Overall: {overallRating}</h2>
+      <h2>Overall: {overallRating}</h2>
       <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
         {[...Array(forNow)].map((_, i) => (
           <img
@@ -50,36 +50,36 @@ export default function Page({ params }: { params: { listingId: string } }) {
   ];
 
   const rateButtonStyle = {
-    padding: '10px', 
-    fontSize: '16px', 
-    fontWeight: 'bold', 
-    backgroundColor: 'maroon', 
-    color: 'white', 
-    border: 'None', 
-    borderRadius: '7px', 
+    padding: '10px',
+    fontSize: '16px',
+    fontWeight: 'bold',
+    backgroundColor: 'maroon',
+    color: 'white',
+    border: 'None',
+    borderRadius: '7px',
     cursor: 'pointer'
   };
 
   const compareButtonStyle = {
-    padding: '10px', 
-    fontSize: '16px', 
-    fontWeight: 'bold', 
-    backgroundColor: 'white', 
-    color: 'maroon', 
-    border: '2px solid maroon', 
-    borderRadius: '5px', 
+    padding: '10px',
+    fontSize: '16px',
+    fontWeight: 'bold',
+    backgroundColor: 'white',
+    color: 'maroon',
+    border: '2px solid maroon',
+    borderRadius: '5px',
     cursor: 'pointer'
   };
 
   return (
-    <div style={{fontSize: '20px', fontWeight: 'bold' }}>
+    <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
       <span className={playfair.className} style={{ fontSize: '40px' }}>
         ListingName: {params.listingId}
       </span>
       {/* create rate and compare pages */}
       {/* rate me and compare me buttons */}
       <div style={{ marginTop: '20px' }}>
-        <Link href="/rate" style={rateButtonStyle}> Rate Me</Link>
+        <Link href={`/listings/${params.listingId}/rate`} className=' mr-4' style={rateButtonStyle}> Rate Me</Link>
         <Link href="/compare" style={compareButtonStyle}>Compare Me</Link>
       </div>
 

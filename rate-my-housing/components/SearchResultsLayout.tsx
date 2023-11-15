@@ -21,7 +21,7 @@ export default function SearchResultsLayout({ complexes }: SearchResultsLayoutPr
   const [availableOnly, setAvailableOnly] = React.useState<boolean>(false);
 
   const listingComponents = complexes.map((complex: Complex) => {
-    return <SearchListingCard complex={complex} />
+    return <SearchListingCard key={complex.complex_id} complex={complex} />
   })
 
   return (
