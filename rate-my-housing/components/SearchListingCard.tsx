@@ -39,6 +39,7 @@ export default function RootLayout({ complex }: { complex: Complex }) {
             </CardContent>
             <CardActions>
                 <Link href={`/listings/${complex.complex_id}/`}style={buttonStyle}>About Me</Link>
+                <Link href={`/listings/${complex.complex_id}/rate`}style={buttonStyle}>Rate Me</Link>
             </CardActions>
         </Card>
     )
