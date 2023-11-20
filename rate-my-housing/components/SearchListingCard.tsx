@@ -4,6 +4,9 @@ import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
 import Link from 'next/link';
+import Rating from '@mui/material/Rating';
+import { Box } from '@mui/system';
+
 
 
 export default function RootLayout({ complex }: { complex: Complex }) {
@@ -27,7 +30,9 @@ export default function RootLayout({ complex }: { complex: Complex }) {
             <CardContent sx={{ cursor: 'pointer', mb: 14 }}>
                 <div className='text-lg flex justify-between'>
                     <span>{complex.name + ' '}</span>
-                    <span className='font-bold'>X Stars</span>
+                    <Box component="fieldset" mb={3} borderColor="transparent">
+                        <Rating name="read-only" value={complex.stars} readOnly />
+                    </Box>
                 </div>
                 <Typography sx={{ fontSize: 16 }}>{complex.management}</Typography>
                 <Typography sx={{ fontSize: 16 }}>{"ID: " + complex.complex_id}</Typography>
