@@ -24,6 +24,7 @@ export default function RootLayout({ complex }: { complex: Complex }) {
         textAlign: 'center',
         lineHeight: '1.5'
       };
+      
 
     return (
         <Card key={complex.complex_id}>
