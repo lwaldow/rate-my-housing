@@ -9,6 +9,7 @@ const places = [
   {
     complex_id: "12345",
     name: "Test place",
+    address: "123 Amherst Rd Amherst,MA 01003",
     management: "managers",
   },
 

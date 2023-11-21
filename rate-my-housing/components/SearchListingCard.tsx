@@ -30,11 +30,12 @@ export default function RootLayout({ complex }: { complex: Complex }) {
         <Card key={complex.complex_id}>
             <CardContent sx={{ cursor: 'pointer', mb: 14 }}>
                 <div className='text-lg flex justify-between'>
-                    <span>{complex.name + ' '}</span>
+                <span><b style={{fontFamily: 'Playfair Display, serif',fontWeight: 800, fontSize: 25}}>{complex.name + ' '}</b></span>
                     <Box component="fieldset" mb={3} borderColor="transparent">
                         <Rating name="read-only" value={complex.stars} readOnly />
                     </Box>
                 </div>
+                <Typography sx={{ fontSize: 16, color: 'gray' }}>{complex.address}</Typography>
                 <Typography sx={{ fontSize: 16 }}>{complex.management}</Typography>
                 <Typography sx={{ fontSize: 16 }}>{"ID: " + complex.complex_id}</Typography>
             </CardContent>
