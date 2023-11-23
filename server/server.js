@@ -3,7 +3,7 @@ const app = express();
 const cors = require('cors')
 const PORT = 8080;
 const {sequelize, connectToDB} = require('./db')
-const {User, Review, Complex, Address} = require('./all.model')
+const {User, Review, Listing} = require('./all.model')
 const controller  = require('./all.controller.js')
 const body_parser = require('body-parser')
 
@@ -30,33 +30,34 @@ app.post("/users", async (req, res) => {
 });
 
 // get complexes
-app.get("/complexes", async (req, res) => {
-    const complexes = await Complex.findAll();
-    res.status(200).json(complexes);
+app.get("/listings", async (req, res) => {
+    const listings = await Listing.findAll();
+    res.status(200).json(listings);
 });
 
-app.post("/complexes", async (req, res) => {
+app.post("/listings", async (req, res) => {
     const args = req.body
     try {
-        const newComplex = await controller.insertComplex(args.name, args.management)
-        res.status(201).json(newComplex)
+        const newListing = await controller.insertListing(args.name, args.management, 
+            args.state, args.town, args.zip, args.address)
+        res.status(201).json(newListing)
     }
     catch(err) {
         res.json(err)
     }
 });
 
-app.post("/addresses", async (req, res) => {
-    const args = req.body
+// app.post("/addresses", async (req, res) => {
+//     const args = req.body
 
-    try {
-        const newAdress = await controller.insertAddress(args.state,args.town,args.zip,args.address,args.foreign_complex_id)
-        res.status(201).json(newAdress)
-    }
-    catch(err) {
-        res.json(err)
-    }
-});
+//     try {
+//         const newAdress = await controller.insertAddress(args.state,args.town,args.zip,args.address,args.foreign_complex_id)
+//         res.status(201).json(newAdress)
+//     }
+//     catch(err) {
+//         res.json(err)
+//     }
+// });
 
 app.post("/reviews", async (req, res) => {
     const args = req.body

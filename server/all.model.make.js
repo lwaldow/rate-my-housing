@@ -23,8 +23,7 @@ sequelize.authenticate().then(() => {
  });
 
 models.User.sync()
-models.Complex.sync()
-models.Address.sync()
+models.Listing.sync()
 models.Review.sync()
 
  sequelize.sync().then(() => {

@@ -1,5 +1,5 @@
 const { Sequelize, DataTypes } = require("sequelize");
-const {User, Review, Complex, Address} = require('./all.model.js')
+const {User, Review, Listing} = require('./all.model.js')
 require('dotenv').config();
 
 
@@ -36,17 +36,19 @@ function insertUser(email){
     });
 }
 
-function insertComplex(name,management){
-  return Complex.create({
+// function insertComplex(name,management){
+//   return Complex.create({
+//       name: name,
+//       management: management,
+//   }).catch((error) => {
+//       console.error('Failed to create a new user record : ', error);
+//   });
+// }
+
+function insertListing(name, management, state,town,zip,address){
+  return Listing.create({
       name: name,
       management: management,
-  }).catch((error) => {
-      console.error('Failed to create a new user record : ', error);
-  });
-}
-
-function insertAddress(state,town,zip,address,foreign_complex_id){
-  return Address.create({
       state: state,
       town: town,
       zip: zip,
@@ -107,4 +109,4 @@ function searchReviews(kitchen_l=0,kitchen_h=6,bathroom_l=0,bathroom_h=6,parking
   });
 }
 
-module.exports =  {insertUser, insertAddress, insertComplex, insertReview, searchReviews, editReview};
+module.exports =  {insertUser, insertListing, insertReview, searchReviews, editReview};

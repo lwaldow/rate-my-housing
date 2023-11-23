@@ -16,46 +16,32 @@ const User = sequelize.define("users", {
 
 // block 2
 
-const Complex = sequelize.define("complexes", {
-    name: {
-      type: DataTypes.STRING,
-    },
-    management: {
-     type: DataTypes.STRING,
-    },
-    complex_id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      primaryKey: true,
-    }
+const Listing = sequelize.define("listings", {
+  name: {
+    type: DataTypes.STRING,
+  },
+  management: {
+    type: DataTypes.STRING,
+  },
+  state: {
+    type: DataTypes.STRING,
+  },
+  town: {
+    type: DataTypes.STRING,
+  },
+  zip: {
+    type: DataTypes.INTEGER,
+  },
+  address: {
+    type: DataTypes.STRING,
+  },
+  listing_id: {
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4,
+    primaryKey: true,
+  },
  });
 
-const Address = sequelize.define("addresses", {
-    state: {
-        type: DataTypes.STRING,
-    },
-    town: {
-        type: DataTypes.STRING,
-    },
-    zip: {
-        type: DataTypes.INTEGER,
-    },
-    address: {
-        type: DataTypes.STRING,
-    },
-    address_id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      primaryKey: true,
-   }
-});
-
-Complex.hasMany(Address, {
-   foreignKey: {
-     name: 'foreign_complex_id',
-     type: DataTypes.UUID
-   }
- });
 // block 3
 
 const Review = sequelize.define("reviews", {
@@ -101,6 +87,13 @@ User.hasMany(Review, {
    }
  });
 
+ Listing.hasMany(Review, {
+  foreignKey: {
+    name: "foreign_listing_id",
+    type: DataTypes.UUID,
+  },
+});
 
-module.exports = {User, Complex, Review, Address}
+
+module.exports = {User, Listing, Review}
 console.log('|||||||||||||||||||||')
