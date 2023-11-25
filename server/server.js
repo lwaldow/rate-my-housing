@@ -7,9 +7,50 @@ const {User, Review, Listing} = require('./all.model')
 const controller  = require('./all.controller.js')
 const body_parser = require('body-parser')
 
+const session = require('express-session');
+const passport = require('passport');
+require('./auth');
+
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
+
+function isLoggedIn(req, res, next) {
+    req.user ? next() : res.sendStatus(401);
+}
+  
+app.use(session({ secret: 'cats', resave: false, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.get('/', (req, res) => {
+    res.send('<a href="/auth/google">Authenticate with Google</a>');
+});
+
+app.get('/auth/google',
+    passport.authenticate('google', { scope: [ 'email', 'profile' ] }
+));
+
+app.get('/auth/google/callback',
+    passport.authenticate( 'google', {
+    successRedirect: '/protected',
+    failureRedirect: '/auth/google/failure'
+    })
+);
+
+app.get('/protected', isLoggedIn, (req, res) => {
+    res.send(`Hello ${req.user.displayName}`);
+});
+
+app.get('/logout', (req, res) => {
+    req.logout();
+    req.session.destroy();
+    res.send('Goodbye!');
+});
+
+app.get('/auth/google/failure', (req, res) => {
+    res.send('Failed to authenticate..');
+});
 
 // get users
 app.get("/users", async (req, res) => {
