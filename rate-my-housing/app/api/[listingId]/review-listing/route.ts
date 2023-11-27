@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import useMockApi from "../../apiSwitch";
+import useMockApi from "../../util/apiSwitch";
 
-export async function POST({ params }) {
+export async function POST({ params }: { params: { listingId: string } }) {
   const { listingId } = params;
 
   if (useMockApi) {

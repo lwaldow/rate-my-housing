@@ -1,43 +1,72 @@
 'use client';
 
 import React from 'react';
+import _, { debounce } from "lodash";
 import Filterbar from '@/components/Filterbar';
 import Image from 'next/image';
 import Stack from '@mui/material/Stack';
 import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import { Button, CardActions, Typography } from '@mui/material';
-import Link from 'next/link';
 import SearchListingCard from './SearchListingCard';
+import { ListingDTO } from '@/app/api/util/types';
 
-interface SearchResultsLayoutProps {
-  complexes: Array<Complex>
-}
-
-export default function SearchResultsLayout({ complexes }: SearchResultsLayoutProps) {
-
+export default function SearchResultsLayout({ listings }: { listings: ListingDTO[] }) {
   const [searchQuery, setSearchQuery] = React.useState("");
-
   const [availableOnly, setAvailableOnly] = React.useState<boolean>(false);
+  const [loading, setLoading] = React.useState<boolean>(false);
 
-  const listingComponents = complexes.map((complex: Complex) => {
-    return <SearchListingCard key={complex.complex_id} complex={complex} />
-  })
+  const debouncedSearch = React.useCallback(
+    debounce((query: string) => {
+      setLoading(false); // Set loading to false after debounce
+    }, 300),
+    []
+  );
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value;
+    setLoading(true); // Set loading to true when user types
+    setSearchQuery(query);
+    debouncedSearch(query);
+  };
+
+  const filteredListings = listings.filter((listing: ListingDTO) => {
+    // Filtering based on searchQuery
+    return (
+      listing.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      listing.management.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      listing.state.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      listing.town.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      listing.address.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      listing.zip.toString().includes(searchQuery.toLowerCase())
+    );
+  });
+
+  const listingComponents = filteredListings.map((listing: ListingDTO) => {
+    return <SearchListingCard key={listing.listing_id} listing={listing} />;
+  });
 
   return (
     <>
       <Filterbar
         searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-        availableOnly={availableOnly}
-        setAvailableOnly={setAvailableOnly}
+        setSearchQuery={handleSearchChange}
+        
       />
       <div className='flex flex-grow max-h-full overflow-hidden p-1'>
         <Card className='basis-1/2 relative bg-gray-300'>
           <Image src="/favicon.ico" width={300} height={300} alt="Map" />
         </Card>
         <Stack className='basis-1/2 p-2 overflow-auto max-h-full' spacing={2}>
-          {listingComponents}
+          {loading ? (
+            <div className='m-1 text-center'>Loading...</div>
+          ) : (
+            <>
+              {listingComponents.length > 0 ? (
+                listingComponents
+              ) : (
+                <div>No results found.</div>
+              )}
+            </>
+          )}
         </Stack>
       </div>
     </>

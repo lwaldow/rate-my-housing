@@ -24,14 +24,13 @@ export default function Navbar() {
         padding: '8px',
         fontSize: '15px',
         fontWeight: 'bold',
-        backgroundColor: 'maroon',
         color: 'white',
         border: 'none',
         borderRadius: '5px',
         cursor: 'pointer',
         textDecoration: 'none',
         display: 'inline-block',
-        textAlign: 'center',
+        textAlign: 'center' as const,
         lineHeight: '1.5'
       };
 
@@ -46,7 +45,7 @@ export default function Navbar() {
         cursor: 'pointer',
         textDecoration: 'none',
         display: 'inline-block',
-        textAlign: 'center',
+        textAlign: 'center' as const,
         lineHeight: '1.25'
       };
 
@@ -61,14 +60,14 @@ export default function Navbar() {
                             alt="Logo"
                             className="w-12 h-12 mr-0.1" // Adjust the width and height as needed
                         />
-                        <span className="text-self-center whitespace-nowrap text-3xl font-extrabold text-maroon">RateMy</span>
-                        <span className="text-self-center whitespace-nowrap text-3xl font-extrabold text-slate-700">Housing</span>
+                        <span className="text-self-center whitespace-nowrap text-3xl font-extrabold text-rose-900 hover:text-rose-950">RateMy</span>
+                        <span className="text-self-center whitespace-nowrap text-3xl font-extrabold text-slate-900">Housing</span>
                     </Link>
                     <div>
-                        <Link href="/about" className="text-self-center text-1xl font-bold text-maroon underline mr-2">About</Link>
-                        <Link href="/rate" className="text-self-center text-1xl font-bold text-maroon underline mr-2">Add Listing</Link>
-                        <a onClick={handleLoginOpen} style={logInButtonStyle}>Log In</a>
-                        <a onClick={handleSignupOpen} style={signUpButtonStyle}>Sign Up</a>
+                        <Link href="/about" className="text-self-center text-1xl font-bold text-rose-900 hover:text-rose-950 underline mr-2">About</Link>
+                        <Link href="/rate" className="text-self-center text-1xl font-bold text-rose-900 hover:text-rose-950 underline mr-2">Add Listing</Link>
+                        <a onClick={handleLoginOpen} style={logInButtonStyle} className=" border text-rose-900 hover:text-rose-950 border-rose-900 hover:border-rose-950 mr-1">Log In</a>
+                        <a onClick={handleSignupOpen} style={signUpButtonStyle} className="bg-rose-900 hover:bg-rose-950">Sign Up</a>
                     </div>
                 </div>
             </nav>

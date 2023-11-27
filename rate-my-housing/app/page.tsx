@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Stack from '@mui/material/Stack';
 import Card from '@mui/material/Card';
 import SearchResultsLayout from '@/components/SearchResultsLayout';
+import { ListingDTO, transformListing } from './api/util/types';
 
 const places = [
   {
@@ -15,24 +16,23 @@ const places = [
 
 ]
 
-async function getComplexes() {
-  /* const res = await fetch('http://localhost:8080/complexes')
-
+async function getComplexes(): Promise<ListingDTO[]> {
+  const res = await fetch('http://localhost:3000/api/get-all-listings')
+  console.log("mariana jaramillo")
   if (!res.ok) {
-    throw new Error('Failed to fetch data')
+    throw new Error('Failed to fetch data');
   }
-
-  return res.json() */
-  return places
+  const json = await res.json()
+  return json.data as ListingDTO[];
 }
 
 export default async function Home() {
 
-  let complexes = await getComplexes();
+  const listingDTOs: ListingDTO[] = await getComplexes();
   
   return (
     <>
-      <SearchResultsLayout complexes={complexes} />
+      <SearchResultsLayout listings={listingDTOs} />
     </>
   );
 }

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import useMockApi from "../apiSwitch";
+import useMockApi from "../util/apiSwitch";
 
 export async function POST(req: NextRequest) {
   const { body } = req;

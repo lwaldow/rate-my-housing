@@ -1,13 +1,15 @@
 import { NextResponse } from "next/server";
-import useMockApi from "../apiSwitch";
-import { exampleListings } from "../mockData";
+import useMockApi from "../util/apiSwitch";
+import { exampleListings } from "../util/mockData";
+import { Listing, ListingDTO, transformListing } from "../util/types";
 
-export async function GET() {
+export async function GET(): Promise<NextResponse<{ data: Listing[] }>> {
   if (useMockApi) {
+    const listingDTOs = exampleListings.map((listing: Listing) => transformListing(listing));
     return NextResponse.json({ data: exampleListings });
   } else {
-    const res = await fetch('https://localhost:8080/complexes');
-    const data = await res.json();
+    const res = await fetch('https://localhost:8080/listings');
+    const data = await res.json()
     return NextResponse.json({ data });
   }
 }
