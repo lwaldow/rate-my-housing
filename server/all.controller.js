@@ -158,4 +158,4 @@ const uploadFiles = async (req, res) => {
   }
 };
 
-module.exports =  {insertUser, insertListing, insertReview, searchReviews, editReview,uploadFile,uploadFiles};
+module.exports =  {insertUser, insertListing, insertReview, searchReviews, editReview, uploadFile, uploadFiles};
