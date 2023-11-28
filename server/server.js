@@ -138,6 +138,11 @@ app.get("/search_reviews", async (req, res) => {
     }
 });
 
+
+app.post("/upload", upload.single("file"),uploadFiles);  
+
+
+
 app.listen(PORT, () => {
     console.log(`Server started on ${PORT}`);
     connectToDB();
