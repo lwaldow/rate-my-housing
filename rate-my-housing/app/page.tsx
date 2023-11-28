@@ -12,7 +12,7 @@ const places = [
 
 ]
 
-async function getComplexes(): Promise<ListingDTO[]> {
+async function getListings(): Promise<ListingDTO[]> {
   const res = await fetch('http://localhost:3000/api/get-all-listings', { cache: 'no-store' })
   if (!res.ok) {
     throw new Error('Failed to fetch data');
@@ -23,7 +23,7 @@ async function getComplexes(): Promise<ListingDTO[]> {
 
 export default async function Home() {
 
-  const listingDTOs: ListingDTO[] = await getComplexes();
+  const listingDTOs: ListingDTO[] = await getListings();
 
   return (
     <>

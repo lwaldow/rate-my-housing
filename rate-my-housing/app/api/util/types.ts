@@ -29,9 +29,14 @@ interface User {
     review_id: string;
   }
 
+interface ReviewDTO extends Review {
+  overallRating: number;
+}
+
 interface ListingDTO extends Listing {
   averageRatings: { [key: string]: number };
   overallRating: number;
+  reviews: ReviewDTO[];
 }
 
 function computeAverageRatings(reviews: Review[]): { [key: string]: number } {
@@ -75,17 +80,38 @@ function computeOverallRating(averageRatings: { [key: string]: number }): number
   return overallRating;
 }
 
+export function transformReview(review: Review): ReviewDTO {
+  // Extract numerical rating attributes from the Review object
+  const { kitchen, bathroom, parking, location, pet, storage, laundry } = review;
+  const averageRatings = {
+    kitchen,
+    bathroom,
+    parking,
+    location,
+    pet,
+    storage,
+    laundry,
+  };
+  const overallRating = computeOverallRating(averageRatings);
+  const transformedReview: ReviewDTO = {
+    ...review,
+    overallRating,
+  };
+
+  return transformedReview;
+}
 
 export function transformListing(listing: Listing): ListingDTO {
+  const reviewDTOs: ReviewDTO[] = listing.reviews.map((review: Review) => transformReview(review));
   const averageRatings = computeAverageRatings(listing.reviews);
   const overallRating = computeOverallRating(averageRatings);
   return {
     ...listing,
+    reviews: reviewDTOs,
     averageRatings: averageRatings,
-    overallRating: overallRating  ? overallRating : 1,
+    overallRating: overallRating,
   } as ListingDTO;
 }
-
   
-  export type { User, Review, Listing, ListingDTO };
+  export type { User, Review, ReviewDTO, Listing, ListingDTO };
   
