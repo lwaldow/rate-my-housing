@@ -80,8 +80,7 @@ const Review = sequelize.define("reviews", {
   }
 });
 
-const image = sequelize.define(
-  {
+const Image = sequelize.define("images", {
     image_id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
@@ -92,9 +91,7 @@ const image = sequelize.define(
       type: DataTypes.BLOB('long'), // <- type for image ( database :postgresql )
       allowNull: true 
     },
-  },
-  { schema: 'imageSchema' },
-);
+});
 
 User.hasMany(Review, {
    foreignKey: {
@@ -102,6 +99,13 @@ User.hasMany(Review, {
      type: DataTypes.UUID
    }
  });
+
+ Review.hasMany(Image, {
+  foreignKey: {
+    name: 'foreign_review_id',
+    type: DataTypes.UUID
+  }
+});
 
  Listing.hasMany(Review, {
   foreignKey: {
