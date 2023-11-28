@@ -94,6 +94,22 @@ User.hasMany(Review, {
   },
 });
 
+const imageModel = sequelize.define(
+  {
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
+      primaryKey: true,
+    },
+    image: { 
+      type: DataTypes.BLOB('long'), // <- type for image ( database :postgresql )
+      allowNull: true 
+    },
+  },
+  { schema: 'imageSchema' },
+);
+
 
 module.exports = {User, Listing, Review}
 console.log('|||||||||||||||||||||')
