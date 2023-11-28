@@ -35,11 +35,11 @@ export default function RootLayout({ listing }: { listing: ListingDTO }) {
 
     return (
         <Card key={listing.listing_id} sx={{ minHeight: '345px' }}>
-            <CardContent sx={{ cursor: 'pointer', mb: 1 }}>
+            <CardContent sx={{ mb: 1 }}>
                 <div className='text-lg flex justify-between'>
                     <span><b className={playfair.className} style={{ fontFamily: 'Playfair Display, serif', fontWeight: 800, fontSize: 25 }}>{listing.name + ' '}</b></span>
                     <Box component="fieldset" mb={1} borderColor="transparent">
-                        <Rating name="read-only" value={listing.overallRating} readOnly />
+                        <Rating name="read-only" value={listing.overallRating} precision={0.5} readOnly />
                     </Box>
                 </div>
                 <Typography sx={{ fontSize: 16, color: 'gray', margintop: 1 }}>{listing.address}</Typography>

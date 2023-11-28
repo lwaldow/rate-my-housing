@@ -1,10 +1,6 @@
 import React from 'react';
-import Filterbar from '@/components/Filterbar';
-import Image from 'next/image';
-import Stack from '@mui/material/Stack';
-import Card from '@mui/material/Card';
 import SearchResultsLayout from '@/components/SearchResultsLayout';
-import { ListingDTO, transformListing } from './api/util/types';
+import { ListingDTO } from './api/util/types';
 
 const places = [
   {
@@ -17,8 +13,7 @@ const places = [
 ]
 
 async function getComplexes(): Promise<ListingDTO[]> {
-  const res = await fetch('http://localhost:3000/api/get-all-listings')
-  console.log("mariana jaramillo")
+  const res = await fetch('http://localhost:3000/api/get-all-listings', { cache: 'no-store' })
   if (!res.ok) {
     throw new Error('Failed to fetch data');
   }
@@ -29,7 +24,7 @@ async function getComplexes(): Promise<ListingDTO[]> {
 export default async function Home() {
 
   const listingDTOs: ListingDTO[] = await getComplexes();
-  
+
   return (
     <>
       <SearchResultsLayout listings={listingDTOs} />
