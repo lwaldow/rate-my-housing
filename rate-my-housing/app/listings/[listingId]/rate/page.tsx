@@ -7,15 +7,16 @@ import Link from "next/link";
 import React, { useState } from "react";
 
 export default function Page({ params }: { params: { listingId: string } }) {
+    const val = 1
     const [review, setReview] = React.useState<Object>({
         text_review: '',
-        kitchen: 0,
-        bathroom: 0,
-        parking: 0,
-        location: 0,
-        pet: 0,
-        storage: 0,
-        laundry: 0,
+        kitchen: val,
+        bathroom: val,
+        parking: val,
+        location: val,
+        pet: val,
+        storage: val,
+        laundry: val,
     });
 
     const submitButtonStyle = {
@@ -71,8 +72,13 @@ export default function Page({ params }: { params: { listingId: string } }) {
     const handleSubmit = async () => {
         setSubmitting(true);
         try {
-            const response = await fetch(`http://localhost:3000/api/review-listing?listingId=${params.listingId}`, {
+            const response = await fetch(`http://localhost:3000/api/review-listing`, {//?listingId=${params.listingId}`, {
+                cache: 'no-cache',
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ review }),
             });
 
             if (response.ok) {
