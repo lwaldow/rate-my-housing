@@ -60,7 +60,7 @@ function insertListing(name, management, state,town,zip,address){
   });
 }
 
-function insertReview(text_review,kitchen,tag,bathroom,parking,location,pet,storage,laundry){
+function insertReview(text_review,kitchen,tag,bathroom,parking,location,pet,storage,laundry, listing_id){
   return Review.create({
       text_review: text_review,
       kitchen: kitchen,
@@ -70,7 +70,8 @@ function insertReview(text_review,kitchen,tag,bathroom,parking,location,pet,stor
       location: location,
       pet: pet,
       storage: storage,
-      laundry: laundry
+      laundry: laundry,
+      listing_id: listing_id
   }).catch((error) => {
       console.error('Failed to create a new user record : ', error);
   });

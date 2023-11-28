@@ -80,41 +80,29 @@ const Review = sequelize.define("reviews", {
   }
 });
 
-const Image = sequelize.define("images", {
-    image_id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      allowNull: false,
-      primaryKey: true,
-    },
-    image_data: { 
-      type: DataTypes.BLOB('long'), // <- type for image ( database :postgresql )
-      allowNull: true 
-    },
-});
+// const Image = sequelize.define("images", {
+//     image_id: {
+//       type: DataTypes.UUID,
+//       defaultValue: DataTypes.UUIDV4,
+//       allowNull: false,
+//       primaryKey: true,
+//     },
+//     image_data: { 
+//       type: DataTypes.BLOB('long'), // <- type for image ( database :postgresql )
+//       allowNull: true 
+//     },
+// });
 
-User.hasMany(Review, {
-   foreignKey: {
-     name: 'foreign_user_id',
-     type: DataTypes.UUID
-   }
- });
+User.hasMany(Review, { foreignKey: 'user_id' });
+Review.belongsTo(User, { foreignKey: 'user_id' });
 
- Review.hasMany(Image, {
-  foreignKey: {
-    name: 'foreign_review_id',
-    type: DataTypes.UUID
-  }
-});
+// Review.hasMany(Image, { foreignKey: 'review_id' });
+// Image.belongsTo(Review, { foreignKey: 'image_id' });
 
- Listing.hasMany(Review, {
-  foreignKey: {
-    name: "foreign_listing_id",
-    type: DataTypes.UUID,
-  },
-});
+Listing.hasMany(Review, { foreignKey: 'listing_id' });
+Review.belongsTo(Listing, { foreignKey: 'listing_id' });
 
 
 
-module.exports = {User, Listing, Review,Image}
+module.exports = {User, Listing, Review}
 console.log('|||||||||||||||||||||')

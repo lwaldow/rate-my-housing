@@ -94,6 +94,16 @@ app.post("/listings", async (req, res) => {
     }
 });
 
+app.get("/listings/:id", async (req, res) => {
+    const listing = await Listing.findByPk(req.params.id)
+    const reviews = await Review.findAll({
+        where: {
+            listing_id: req.params.id,
+          },
+    })
+    res.status(200).json({listing, reviews});
+})
+
 // app.post("/addresses", async (req, res) => {
 //     const args = req.body
 
@@ -106,11 +116,15 @@ app.post("/listings", async (req, res) => {
 //     }
 // });
 
-app.post("/reviews", async (req, res) => {
+app.post("/reviews/:listingId", async (req, res) => {
     const args = req.body
 
     try {
-        const newReview = await controller.insertReview(args.text_review,args.kitchen,args.tag,args.bathroom,args.parking,args.location,args.pet,args.storage,args.laundry,args.foreign_user_id)
+        // Assuming you have a listing with a specific listing_id
+        const listingId = req.params.listingId; // Replace with the actual listing_id
+
+        const newReview = await controller.insertReview(args.text_review,args.kitchen,args.tag,args.bathroom,args.parking,args.location,args.pet,args.storage,args.laundry, listingId)
+        
         res.status(201).json(newReview)
     }
     catch(err) {
