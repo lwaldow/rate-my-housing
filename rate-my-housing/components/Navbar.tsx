@@ -39,8 +39,6 @@ export default function Navbar() {
         fontSize: '15px',
         fontWeight: 'bold',
         backgroundColor: 'white',
-        color: 'maroon',
-        border: '2px solid maroon',
         borderRadius: '5px',
         cursor: 'pointer',
         textDecoration: 'none',

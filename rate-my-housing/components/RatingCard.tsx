@@ -24,39 +24,47 @@ function getLabelText(value: number) {
     return `${value} Star${value !== 1 ? 's' : ''}, ${labels[value]}`;
 }
 
-export default function RatingCard() {
-    const [value, setValue] = React.useState<number | null>(2);
+function capitalizeFirstLetter(str: string) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+export default function RatingCard({
+    attribute,
+    value,
+    onChange,
+}: {
+    attribute: string;
+    value: number;
+    onChange: (attribute: string, value: number) => void;
+}) {
+
     const [hover, setHover] = React.useState(-1);
 
     return (
-        <Card>
-            <CardContent>
-                <div className='flex justify-center'>
-                    <Box
-                        sx={{
-                            width: 200,
-                            display: 'flex',
-                            alignItems: 'center',
+        <Card sx={{margin: "10px", marginLeft: "100px", marginRight: "100px", display: "flex", justifyContent: "center"}}>
+            <CardContent sx={{ display: "flex", flexDirection: "column", alignItems: "center"}}>
+                <Typography variant="h6">{capitalizeFirstLetter(attribute)}</Typography>
+                <Box
+                    sx={{
+                        width: 200,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }}
+                >
+                    <Rating
+                        name={attribute}
+                        value={value}
+                        precision={0.5}
+                        getLabelText={getLabelText}
+                        onChange={(event, newValue) => {
+                            onChange(attribute, newValue);
                         }}
-                    >
-                        <Rating
-                            name="blah"
-                            value={value}
-                            precision={0.5}
-                            getLabelText={getLabelText}
-                            onChange={(event, newValue) => {
-                                setValue(newValue);
-                            }}
-                            onChangeActive={(event, newHover) => {
-                                setHover(newHover);
-                            }}
-                            emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
-                        />
-                        {value !== null && (
-                            <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
-                        )}
-                    </Box>
-                </div>
+                        onChangeActive={(event, newHover) => {
+                            setHover(newHover);
+                        }}
+                    />
+                </Box>
             </CardContent>
         </Card>
     );
