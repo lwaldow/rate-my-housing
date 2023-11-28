@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
             return NextResponse.json({}, { status: 404, statusText: "Listing not found" });
         }
     } else {
-        const res = await fetch(`http://localhost:8080/complexes/${listingId}`);
+        const res = await fetch(`http://localhost:8080/listings/${listingId}`);
         if (res.ok) {
             const data: Listing = await res.json() as Listing;
             return NextResponse.json({ data: transformListing(data) });

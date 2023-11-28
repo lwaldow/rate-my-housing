@@ -39,6 +39,7 @@ app.get('/auth/google/callback',
 );
 
 app.get('/protected', isLoggedIn, (req, res) => {
+    console.log('Hi ' + req.user.displayName)
     res.redirect('http://localhost:3000');
 });
 
@@ -46,7 +47,7 @@ app.get('/protected', isLoggedIn, (req, res) => {
 //     res.send(`Hello ${req.user.displayName}`);
 // });
 
-app.get('/logout', (req, res) => {
+app.get('/logout', isLoggedIn, (req, res) => {
     req.logout(function(err) {
         if (err) { return next(err); }
         req.session.destroy();
@@ -104,18 +105,6 @@ app.get("/listings/:id", async (req, res) => {
     res.status(200).json({listing, reviews});
 })
 
-// app.post("/addresses", async (req, res) => {
-//     const args = req.body
-
-//     try {
-//         const newAdress = await controller.insertAddress(args.state,args.town,args.zip,args.address,args.foreign_complex_id)
-//         res.status(201).json(newAdress)
-//     }
-//     catch(err) {
-//         res.json(err)
-//     }
-// });
-
 app.post("/reviews/:listingId", async (req, res) => {
     const args = req.body
 
@@ -158,8 +147,6 @@ app.get("/search_reviews", async (req, res) => {
 
 
 app.post("/upload", controller.uploadFile.single("file"),controller.uploadFiles);  
-
-
 
 app.listen(PORT, () => {
     console.log(`Server started on ${PORT}`);
