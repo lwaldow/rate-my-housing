@@ -1,6 +1,8 @@
 const { Sequelize, DataTypes } = require("sequelize");
-const {User, Review, Listing} = require('./all.model.js')
+const {User, Review, Listing,Image} = require('./all.model.js')
 require('dotenv').config();
+
+const multer = require("multer");
 
 
 
@@ -109,4 +111,51 @@ function searchReviews(kitchen_l=0,kitchen_h=6,bathroom_l=0,bathroom_h=6,parking
   });
 }
 
-module.exports =  {insertUser, insertListing, insertReview, searchReviews, editReview};
+const imageFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith("image")) {
+    cb(null, true);
+  } else {
+    cb("Please upload only images.", false);
+  }
+};
+
+var storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, __basedir + "/resources/static/assets/uploads/");
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-bezkoder-${file.originalname}`);
+  },
+});
+
+var uploadFile = multer({ storage: storage, fileFilter: imageFilter });
+
+
+const fs = require("fs");
+const uploadFiles = async (req, res) => {
+  try {
+    console.log(req.file);
+
+    if (req.file == undefined) {
+      return res.send(`You must select a file.`);
+    }
+
+    Image.create({
+      data: fs.readFileSync(
+        __basedir + "/resources/static/assets/uploads/" + req.file.filename
+      ),
+    }).then((image) => {
+      fs.writeFileSync(
+        __basedir + "/resources/static/assets/tmp/",
+        image.data
+      );
+
+      return res.send(`File has been uploaded.`);
+    });
+  } catch (error) {
+    console.log(error);
+    return res.send(`Error when trying upload images: ${error}`);
+  }
+};
+
+module.exports =  {insertUser, insertListing, insertReview, searchReviews, editReview,uploadFile,uploadFiles};
