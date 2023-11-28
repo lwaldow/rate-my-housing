@@ -39,7 +39,7 @@ app.get('/auth/google/callback',
 );
 
 app.get('/protected', isLoggedIn, (req, res) => {
-    res.send(`Hello ${req.user.displayName}`);
+    res.redirect('http://localhost:3000');
 });
 
 app.get('/logout', (req, res) => {
