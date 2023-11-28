@@ -93,6 +93,9 @@ export default function LogInModal({ open, handleClose }: LogInModalProps) {
                                 control={<Checkbox value="remember" color="primary" />}
                                 label="Remember me"
                             />
+                            <Button onClick={() => window.location.href = 'http://localhost:8080/auth/google'} fullWidth variant="contained">
+                            Sign In with Google
+                            </Button>
                             <Button
                                 type="submit"
                                 fullWidth
