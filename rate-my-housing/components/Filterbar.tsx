@@ -4,46 +4,40 @@ import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import TextField from "@mui/material/TextField";
 import React from "react";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import ToggleButton from "@mui/material/ToggleButton";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import Checkbox from "@mui/material/Checkbox";
+import ListItemText from "@mui/material/ListItemText";
 
 interface FilterProps {
     searchQuery: string;
     setSearchQuery: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    sortOverallRating: 'asc' | 'desc'; // Add sort options for overall rating
-    sortNumOfRatings: 'asc' | 'desc'; // Add sort options for number of ratings
-    setSortOverallRating: (value: 'asc' | 'desc') => void;
-    setSortNumOfRatings: (value: 'asc' | 'desc') => void;
+    sortOptions: ('highestReview' | 'mostReviews')[];
+    setSortOptions: (values: ('highestReview' | 'mostReviews')[]) => void;
 }
+
+const sortOptionsLabels: Record<'highestReview' | 'mostReviews', string> = {
+    highestReview: 'Highest Review',
+    mostReviews: 'Most Reviews',
+};
 
 export default function Filterbar({
     searchQuery,
     setSearchQuery,
-    sortOverallRating,
-    sortNumOfRatings,
-    setSortOverallRating,
-    setSortNumOfRatings,
+    sortOptions,
+    setSortOptions,
 }: FilterProps) {
-    const handleOverallRatingSort = (
-        event: React.MouseEvent<HTMLElement>,
-        newSort: 'asc' | 'desc'
+    const handleSortChange = (
+        event: React.ChangeEvent<{ value: ('highestReview' | 'mostReviews')[] }>
     ) => {
-        if (newSort !== null) {
-            setSortOverallRating(newSort);
-        }
+        setSortOptions(event.target.value as ('highestReview' | 'mostReviews')[]);
     };
 
-    const handleNumOfRatingsSort = (
-        event: React.MouseEvent<HTMLElement>,
-        newSort: 'asc' | 'desc'
-    ) => {
-        if (newSort !== null) {
-            setSortNumOfRatings(newSort);
-        }
-    };
 
     return (
-        <div className="flex justify-between items-center pl-4 pr-4 border-b border-gray-400">
+        <div className="flex justify-between items-center p-4 border-b min-h-32 h-32 max-h-32 border-gray-400">
             <TextField
                 sx={{ minWidth: 600 }}
                 id="search-bar"
@@ -61,29 +55,31 @@ export default function Filterbar({
                         </IconButton>
                 }}
             />
-            <div className="flex items-center justify-end">
-                <ToggleButtonGroup
-                    value={sortOverallRating}
-                    exclusive
-                    onChange={handleOverallRatingSort}
-                    aria-label="overall rating sorting"
-                    size="small"
-                >
-                    <ToggleButton value="asc">Asc Rating</ToggleButton>
-                    <ToggleButton value="desc">Desc Rating</ToggleButton>
-                </ToggleButtonGroup>
 
-                {/* Toggle for number of ratings */}
-                <ToggleButtonGroup
-                    value={sortNumOfRatings}
-                    exclusive
-                    onChange={handleNumOfRatingsSort}
-                    aria-label="number of ratings sorting"
-                    size="small"
-                >
-                    <ToggleButton value="asc">Asc Num of Ratings</ToggleButton>
-                    <ToggleButton value="desc">Desc Num of Ratings</ToggleButton>
-                </ToggleButtonGroup>
+            <div className="flex items-center justify-end">
+                <FormControl sx={{minWidth: "240px"}}>
+                    <InputLabel size="small">Sort By:</InputLabel>
+                    <Select
+                        multiple
+                        value={sortOptions}
+                        onChange={handleSortChange}
+                        size="small"
+                        renderValue={(selected) => (
+                            <div>
+                                {selected.map(val => sortOptionsLabels[val]).join(", ")}
+                            </div>
+                        )}
+                    >
+                        <MenuItem value="highestReview">
+                            <Checkbox checked={sortOptions.includes('highestReview')} />
+                            <ListItemText primary="Highest Review" />
+                        </MenuItem>
+                        <MenuItem value="mostReviews">
+                            <Checkbox checked={sortOptions.includes('mostReviews')} />
+                            <ListItemText primary="Most Reviews" />
+                        </MenuItem>
+                    </Select>
+                </FormControl>
             </div>
         </div>
     )

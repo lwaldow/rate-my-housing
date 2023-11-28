@@ -30,9 +30,8 @@ interface User {
   }
 
 interface ListingDTO extends Listing {
-  // Add computed fields here
-  averageRatings: { [key: string]: number }; // Object to store average ratings per attribute
-  overallRating: number; // Overall computed rating
+  averageRatings: { [key: string]: number };
+  overallRating: number;
 }
 
 function computeAverageRatings(reviews: Review[]): { [key: string]: number } {
@@ -83,7 +82,7 @@ export function transformListing(listing: Listing): ListingDTO {
   return {
     ...listing,
     averageRatings: averageRatings,
-    overallRating: overallRating,
+    overallRating: overallRating  ? overallRating : 1,
   } as ListingDTO;
 }
 

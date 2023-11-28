@@ -6,7 +6,8 @@ import { Listing, ListingDTO, transformListing } from "../util/types";
 export async function GET(): Promise<NextResponse<{ data: Listing[] }>> {
   if (useMockApi) {
     const listingDTOs = exampleListings.map((listing: Listing) => transformListing(listing));
-    return NextResponse.json({ data: exampleListings });
+    console.log("help");
+    return NextResponse.json({ data: listingDTOs });
   } else {
     const res = await fetch('http://localhost:8080/listings');
     const data = await res.json()
