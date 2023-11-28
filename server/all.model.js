@@ -80,15 +80,15 @@ const Review = sequelize.define("reviews", {
   }
 });
 
-const imageModel = sequelize.define(
+const image = sequelize.define(
   {
-    id: {
+    image_id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true,
     },
-    image: { 
+    image_data: { 
       type: DataTypes.BLOB('long'), // <- type for image ( database :postgresql )
       allowNull: true 
     },
