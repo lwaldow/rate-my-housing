@@ -42,6 +42,10 @@ app.get('/protected', isLoggedIn, (req, res) => {
     res.redirect('http://localhost:3000');
 });
 
+// app.get('/protected', isLoggedIn, (req, res) => {
+//     res.send(`Hello ${req.user.displayName}`);
+// });
+
 app.get('/logout', (req, res) => {
     req.logout(function(err) {
         if (err) { return next(err); }
