@@ -116,5 +116,5 @@ User.hasMany(Review, {
 
 
 
-module.exports = {User, Listing, Review}
+module.exports = {User, Listing, Review,Image}
 console.log('|||||||||||||||||||||')

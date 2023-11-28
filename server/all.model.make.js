@@ -25,6 +25,7 @@ sequelize.authenticate().then(() => {
 models.User.sync()
 models.Listing.sync()
 models.Review.sync()
+models.Image.sync()
 
  sequelize.sync().then(() => {
     console.log('all table created successfully!');
