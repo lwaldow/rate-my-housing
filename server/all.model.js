@@ -80,20 +80,6 @@ const Review = sequelize.define("reviews", {
   }
 });
 
-User.hasMany(Review, {
-   foreignKey: {
-     name: 'foreign_user_id',
-     type: DataTypes.UUID
-   }
- });
-
- Listing.hasMany(Review, {
-  foreignKey: {
-    name: "foreign_listing_id",
-    type: DataTypes.UUID,
-  },
-});
-
 const imageModel = sequelize.define(
   {
     id: {
@@ -109,6 +95,21 @@ const imageModel = sequelize.define(
   },
   { schema: 'imageSchema' },
 );
+
+User.hasMany(Review, {
+   foreignKey: {
+     name: 'foreign_user_id',
+     type: DataTypes.UUID
+   }
+ });
+
+ Listing.hasMany(Review, {
+  foreignKey: {
+    name: "foreign_listing_id",
+    type: DataTypes.UUID,
+  },
+});
+
 
 
 module.exports = {User, Listing, Review}
