@@ -3,7 +3,7 @@ import useMockApi from "../util/apiSwitch";
 import { exampleListings } from "../util/mockData";
 import { Listing, ListingDTO, transformListing } from "../util/types";
 
-export async function GET(): Promise<NextResponse<{ data: Listing[] }>> {
+export async function GET(): Promise<NextResponse<{ data: ListingDTO[] }>> {
   if (useMockApi) {
     const listingDTOs = exampleListings.map((listing: Listing) => transformListing(listing));
     console.log("help");
