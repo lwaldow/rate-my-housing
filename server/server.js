@@ -139,7 +139,7 @@ app.get("/search_reviews", async (req, res) => {
 });
 
 
-app.post("/upload", upload.single("file"),uploadFiles);  
+app.post("/upload", controller.uploadFile.single("file"),controller.uploadFiles);  
 
 
 
