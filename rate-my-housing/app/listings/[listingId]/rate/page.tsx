@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import RatingCard from "@/components/RatingCard";
-import { Alert, Snackbar, Typography } from "@mui/material";
+import { Alert, Snackbar, TextField, Typography } from "@mui/material";
 import Link from "next/link";
 import React, { useState } from "react";
 
@@ -72,7 +72,7 @@ export default function Page({ params }: { params: { listingId: string } }) {
     const handleSubmit = async () => {
         setSubmitting(true);
         try {
-            const response = await fetch(`http://localhost:3000/api/review-listing`, {//?listingId=${params.listingId}`, {
+            const response = await fetch(`http://localhost:3000/api/review-listing?listingId=${params.listingId}`, {
                 cache: 'no-cache',
                 method: 'POST',
                 headers: {
@@ -86,7 +86,7 @@ export default function Page({ params }: { params: { listingId: string } }) {
                 setTimeout(() => {
                     router.push(`/listings/${params.listingId}`);
                 }, 300);
-            } 
+            }
             else {
                 console.log('Failed to submit review');
                 setErrorOpen(true);
@@ -121,6 +121,19 @@ export default function Page({ params }: { params: { listingId: string } }) {
                     }
                     return null;
                 })}
+                <div className='flex justify-center'>
+                    <TextField
+                        multiline
+                        value={review.text_review}
+                        onChange={(e) => setReview({ ...review, text_review: e.target.value })}
+                        placeholder="Add your review here..."
+                        style={{
+                            width: "800px",
+                            padding: '8px',
+                        }}
+                        minRows={5}
+                    />
+                </div>
                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
                     <Link href={`/listings/${params.listingId}/`} passHref>
                         <button style={{ ...cancelButtonStyle, marginRight: '10px' }} className=" border text-rose-900 hover:text-rose-950 border-rose-900 hover:border-rose-950 mr-1">Cancel</button>

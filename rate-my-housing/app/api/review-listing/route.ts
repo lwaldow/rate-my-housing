@@ -6,7 +6,7 @@ export async function POST(request: NextRequest) {
   const listingId = searchParams.get('listingId')
   if (useMockApi) {
     // Perform mock operation for posting a review for a listing
-    return NextResponse.json({ data: `Mock review posted for listing ${listingId}` });
+    return NextResponse.json({ data: JSON.stringify(request.json) });
   } else {
     const res = await fetch(`https://localhost:8080/reviews/${listingId}`, {
       method: 'POST',
