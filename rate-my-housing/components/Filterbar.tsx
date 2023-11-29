@@ -6,7 +6,7 @@ import TextField from "@mui/material/TextField";
 import React from "react";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
-import Select from "@mui/material/Select";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Checkbox from "@mui/material/Checkbox";
 import ListItemText from "@mui/material/ListItemText";
@@ -30,14 +30,14 @@ export default function Filterbar({
     setSortOptions,
 }: FilterProps) {
     const handleSortChange = (
-        event: React.ChangeEvent<{ value: ('highestReview' | 'mostReviews')[] }>
+        event: SelectChangeEvent<('highestReview' | 'mostReviews')[]>
     ) => {
         setSortOptions(event.target.value as ('highestReview' | 'mostReviews')[]);
     };
 
 
     return (
-        <div className="flex justify-between items-center p-4 border-b min-h-32 h-32 max-h-32 border-gray-400">
+        <div className="flex justify-between items-center p-4 border-b max-h-fit border-gray-400">
             <TextField
                 sx={{ minWidth: 600 }}
                 id="search-bar"
