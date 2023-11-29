@@ -6,9 +6,20 @@ import { Alert, Snackbar, TextField, Typography } from "@mui/material";
 import Link from "next/link";
 import React, { useState } from "react";
 
+interface ReviewData {
+    text_review: string;
+    kitchen: number;
+    bathroom: number;
+    parking: number;
+    location: number;
+    pet: number;
+    storage: number;
+    laundry: number;
+}
+
 export default function Page({ params }: { params: { listingId: string } }) {
     const val = 1
-    const [review, setReview] = React.useState<Object>({
+    const [review, setReview] = React.useState<ReviewData>({
         text_review: '',
         kitchen: val,
         bathroom: val,
@@ -95,7 +106,9 @@ export default function Page({ params }: { params: { listingId: string } }) {
             console.log('Error:', error);
             setErrorOpen(true);
         } finally {
-            setSubmitting(false)
+            setTimeout(() => {
+                setSubmitting(false);
+            }, 300);
         }
     };
 
@@ -109,12 +122,12 @@ export default function Page({ params }: { params: { listingId: string } }) {
                     </Typography>
                 </div>
                 {Object.keys(review).map((attribute, index) => {
-                    if (typeof review[attribute] === 'number') {
+                    if (typeof review[attribute as keyof ReviewData] === 'number') {
                         return (
                             <RatingCard
                                 key={index}
                                 attribute={attribute}
-                                value={review[attribute]}
+                                value={review[attribute as keyof ReviewData] as number}
                                 onChange={handleAttributeChange}
                             />
                         );

@@ -1,32 +1,39 @@
 // models.ts
 
 interface User {
-    email: string;
-    user_id: string;
-  }
-  
-  interface Listing {
-    name: string;
-    management: string;
-    state: string;
-    town: string;
-    zip: number;
-    address: string;
-    listing_id: string;
-  }
-  
-  interface Review {
-    text_review: string;
-    kitchen: number;
-    tag: any;
-    bathroom: number;
-    parking: number;
-    location: number;
-    pet: number;
-    storage: number;
-    laundry: number;
-    review_id: string;
-  }
+  email: string;
+  user_id: string;
+}
+
+interface Listing {
+  name: string;
+  management: string;
+  state: string;
+  town: string;
+  zip: number;
+  address: string;
+  listing_id: string;
+  reviews: Review[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+interface Review {
+  text_review: string;
+  kitchen: number;
+  tag: any;
+  bathroom: number;
+  parking: number;
+  location: number;
+  pet: number;
+  storage: number;
+  laundry: number;
+  review_id: string;
+  createdAt: string;
+  updatedAt: string;
+  user_id: string;
+  listing_id: string;
+}
 
 interface ReviewDTO extends Review {
   overallRating: number;
@@ -100,9 +107,9 @@ export function transformReview(review: Review): ReviewDTO {
   return transformedReview;
 }
 
-export function transformListing(listing: Listing, reviews: Review[]): ListingDTO {
-  const reviewDTOs: ReviewDTO[] = reviews.map((review: Review) => transformReview(review));
-  const averageRatings = computeAverageRatings(reviews);
+export function transformListing(listing: Listing): ListingDTO {
+  const reviewDTOs: ReviewDTO[] = listing.reviews.map((review: Review) => transformReview(review));
+  const averageRatings = computeAverageRatings(listing.reviews);
   const overallRating = computeOverallRating(averageRatings);
   return {
     ...listing,
@@ -112,17 +119,4 @@ export function transformListing(listing: Listing, reviews: Review[]): ListingDT
   } as ListingDTO;
 }
 
-// export function transformListing(listing: Listing): ListingDTO {
-//   const reviewDTOs: ReviewDTO[] = listing.reviews.map((review: Review) => transformReview(review));
-//   const averageRatings = computeAverageRatings(listing.reviews);
-//   const overallRating = computeOverallRating(averageRatings);
-//   return {
-//     ...listing,
-//     reviews: reviewDTOs,
-//     averageRatings: averageRatings,
-//     overallRating: overallRating,
-//   } as ListingDTO;
-// }
-  
-  export type { User, Review, ReviewDTO, Listing, ListingDTO };
-  
+export type { User, Review, ReviewDTO, Listing, ListingDTO };
