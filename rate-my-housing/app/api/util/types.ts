@@ -111,6 +111,18 @@ export function transformListing(listing: Listing, reviews: Review[]): ListingDT
     overallRating: overallRating,
   } as ListingDTO;
 }
+
+// export function transformListing(listing: Listing): ListingDTO {
+//   const reviewDTOs: ReviewDTO[] = listing.reviews.map((review: Review) => transformReview(review));
+//   const averageRatings = computeAverageRatings(listing.reviews);
+//   const overallRating = computeOverallRating(averageRatings);
+//   return {
+//     ...listing,
+//     reviews: reviewDTOs,
+//     averageRatings: averageRatings,
+//     overallRating: overallRating,
+//   } as ListingDTO;
+// }
   
   export type { User, Review, ReviewDTO, Listing, ListingDTO };
   
