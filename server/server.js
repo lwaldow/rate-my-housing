@@ -79,9 +79,12 @@ app.post("/users", async (req, res) => {
 
 // get complexes
 app.get("/listings", async (req, res) => {
-    const listings = await Listing.findAll();
-    const reviews = await Review.findAll();
-    res.status(200).json({listings, reviews});
+    const listingsWithReviews = await Listing.findAll({
+        include: [{ model: Review }],
+    });
+    // const listings = await Listing.findAll();
+    // const reviews = await Review.findAll();
+    res.status(200).json(listingsWithReviews);
 });
 
 app.post("/listings", async (req, res) => {
