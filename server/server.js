@@ -116,7 +116,7 @@ app.post("/reviews/:listingId", async (req, res) => {
         // Assuming you have a listing with a specific listing_id
         const listingId = req.params.listingId; // Replace with the actual listing_id
 
-        const newReview = await controller.insertReview(args.text_review,args.kitchen,args.tag,args.bathroom,args.parking,args.location,args.pet,args.storage,args.laundry, listingId)
+        const newReview = await controller.insertReview(args.text_review,args.kitchen,args.tag,args.bathroom,args.parking,args.location,args.pet,args.storage,args.laundry, listingId, args.user_id)
         
         res.status(201).json(newReview)
     }

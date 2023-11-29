@@ -30,7 +30,7 @@ const Listing = sequelize.define("listings", {
     type: DataTypes.STRING,
   },
   zip: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
   },
   address: {
     type: DataTypes.STRING,
@@ -44,41 +44,78 @@ const Listing = sequelize.define("listings", {
 
 // block 3
 
+// const Review = sequelize.define("reviews", {
+//    text_review: {
+//        type: DataTypes.STRING(3000),
+//    },
+//    kitchen: {
+//        type: DataTypes.SMALLINT,
+//    },
+//    tag: {
+//        type: DataTypes.JSON,
+//        allowNull: true
+//    },
+//    bathroom: {
+//        type: DataTypes.SMALLINT,
+//    },
+//    parking: {
+//        type: DataTypes.SMALLINT,
+//    },
+//    location: {
+//        type: DataTypes.SMALLINT,
+//    },
+//    pet: {
+//        type: DataTypes.SMALLINT,
+//    },
+//    storage: {
+//        type: DataTypes.SMALLINT,
+//    },
+//    laundry: {
+//        type: DataTypes.SMALLINT,
+//    },
+//    review_id: {
+//      type: DataTypes.UUID,
+//      defaultValue: DataTypes.UUIDV4,
+//      primaryKey: true,
+//   }
+// });
+
 const Review = sequelize.define("reviews", {
-   text_review: {
-       type: DataTypes.STRING(3000),
-   },
-   kitchen: {
-       type: DataTypes.SMALLINT,
-   },
-   tag: {
-       type: DataTypes.JSON,
-       allowNull: true
-   },
-   bathroom: {
-       type: DataTypes.SMALLINT,
-   },
-   parking: {
-       type: DataTypes.SMALLINT,
-   },
-   location: {
-       type: DataTypes.SMALLINT,
-   },
-   pet: {
-       type: DataTypes.SMALLINT,
-   },
-   storage: {
-       type: DataTypes.SMALLINT,
-   },
-   laundry: {
-       type: DataTypes.SMALLINT,
-   },
-   review_id: {
-     type: DataTypes.UUID,
-     defaultValue: DataTypes.UUIDV4,
-     primaryKey: true,
-  }
+  text_review: {
+      type: DataTypes.STRING(3000),
+  },
+  kitchen: {
+      type: DataTypes.FLOAT, // or DataTypes.DOUBLE
+  },
+  tag: {
+      type: DataTypes.JSON,
+      allowNull: true,
+  },
+  bathroom: {
+      type: DataTypes.FLOAT, // or DataTypes.DOUBLE
+  },
+  parking: {
+      type: DataTypes.FLOAT, // or DataTypes.DOUBLE
+  },
+  location: {
+      type: DataTypes.FLOAT, // or DataTypes.DOUBLE
+  },
+  pet: {
+      type: DataTypes.FLOAT, // or DataTypes.DOUBLE
+  },
+  storage: {
+      type: DataTypes.FLOAT, // or DataTypes.DOUBLE
+  },
+  laundry: {
+      type: DataTypes.FLOAT, // or DataTypes.DOUBLE
+  },
+  review_id: {
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4,
+    primaryKey: true,
+ }
 });
+
 
 // const Image = sequelize.define("images", {
 //     image_id: {
