@@ -2,16 +2,6 @@ import React from 'react';
 import SearchResultsLayout from '@/components/SearchResultsLayout';
 import { ListingDTO } from './api/util/types';
 
-const places = [
-  {
-    complex_id: "12345",
-    name: "Test place",
-    address: "123 Amherst Rd Amherst,MA 01003",
-    management: "managers",
-  },
-
-]
-
 async function getListings(): Promise<ListingDTO[]> {
   const res = await fetch('http://localhost:3000/api/get-all-listings', { cache: 'no-store' })
   if (!res.ok) {
