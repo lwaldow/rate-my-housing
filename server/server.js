@@ -101,7 +101,12 @@ app.post("/listings", async (req, res) => {
 
 app.get("/listings/:id", async (req, res) => {
     const listing = await Listing.findByPk(req.params.id, {
-        include: [{ model: Review }],
+        include: [{ 
+            model: Review,
+            include: {
+                model: User
+            }
+        }],
     })
     res.status(200).json({listing});
 })
