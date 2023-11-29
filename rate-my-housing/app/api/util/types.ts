@@ -13,7 +13,6 @@ interface User {
     zip: number;
     address: string;
     listing_id: string;
-    reviews: Review[];
   }
   
   interface Review {
@@ -101,9 +100,9 @@ export function transformReview(review: Review): ReviewDTO {
   return transformedReview;
 }
 
-export function transformListing(listing: Listing): ListingDTO {
-  const reviewDTOs: ReviewDTO[] = listing.reviews.map((review: Review) => transformReview(review));
-  const averageRatings = computeAverageRatings(listing.reviews);
+export function transformListing(listing: Listing, reviews: Review[]): ListingDTO {
+  const reviewDTOs: ReviewDTO[] = reviews.map((review: Review) => transformReview(review));
+  const averageRatings = computeAverageRatings(reviews);
   const overallRating = computeOverallRating(averageRatings);
   return {
     ...listing,

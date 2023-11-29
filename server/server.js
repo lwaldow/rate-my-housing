@@ -80,7 +80,8 @@ app.post("/users", async (req, res) => {
 // get complexes
 app.get("/listings", async (req, res) => {
     const listings = await Listing.findAll();
-    res.status(200).json(listings);
+    const reviews = await Review.findAll();
+    res.status(200).json({listings, reviews});
 });
 
 app.post("/listings", async (req, res) => {

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import useMockApi from "../util/apiSwitch";
 import { exampleListings } from "../util/mockData";
-import { Listing, ListingDTO, transformListing } from "../util/types";
+import { Listing, ListingDTO, Review, transformListing } from "../util/types";
 
 export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams
@@ -16,8 +16,10 @@ export async function GET(request: NextRequest) {
     } else {
         const res = await fetch(`http://localhost:8080/listings/${listingId}`);
         if (res.ok) {
-            const data: Listing = await res.json() as Listing;
-            return NextResponse.json({ data: transformListing(data) });
+            const data = await res.json();
+            const listing: Listing = data.listing;
+            const reviews: Review[] = data.reviews;
+            return NextResponse.json({ data: transformListing(listing, reviews) });
         } else {
             return NextResponse.json({}, { status: res.status, statusText: res.statusText });
         }
