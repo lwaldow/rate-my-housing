@@ -5,6 +5,8 @@ import RatingCard from "@/components/RatingCard";
 import { Alert, Snackbar, TextField, Typography } from "@mui/material";
 import Link from "next/link";
 import React, { useState } from "react";
+import { Playfair_Display } from 'next/font/google'
+const playfair = Playfair_Display({ subsets: ['latin'], weight: ['900'] })
 
 interface ReviewData {
     text_review: string;
@@ -18,7 +20,7 @@ interface ReviewData {
 }
 
 export default function Page({ params }: { params: { listingId: string } }) {
-    const val = 1
+    const val = 0
     const [review, setReview] = React.useState<ReviewData>({
         text_review: '',
         kitchen: val,
@@ -117,7 +119,7 @@ export default function Page({ params }: { params: { listingId: string } }) {
             {/* Your UI layout... */}
             <div>
                 <div style={{ border: "2px solid #ccc" }}>
-                    <Typography variant="h4" fontStyle="" sx={{ textAlign: "center", marginTop: "10px", marginBottom: "10px" }}>
+                    <Typography className={playfair.className} variant="h4" fontStyle="" sx={{ textAlign: "center", marginTop: "10px", marginBottom: "10px" }}>
                         Rate This Listing:
                     </Typography>
                 </div>

@@ -1,10 +1,10 @@
 'use client';
 
 import Link from "next/link"
-import { Playfair_Display } from 'next/font/google'
 import React from "react";
 import LogInModal from "./LogIn";
 import SignUpModal from "./SignUp";
+import { Playfair_Display } from 'next/font/google'
 const playfair = Playfair_Display({ subsets: ['latin'], weight: ['900'] })
 
 
