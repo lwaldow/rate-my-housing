@@ -17,9 +17,7 @@ export async function GET(request: NextRequest) {
         const res = await fetch(`http://localhost:8080/listings/${listingId}`);
         if (res.ok) {
             const data = await res.json();
-            const listing: Listing = data.listing;
-            const reviews: Review[] = data.reviews;
-            return NextResponse.json({ data: transformListing(listing, reviews) });
+            return NextResponse.json({ data: transformListing(data) });
         } else {
             return NextResponse.json({}, { status: res.status, statusText: res.statusText });
         }

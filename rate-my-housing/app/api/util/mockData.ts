@@ -1,14 +1,10 @@
-// constants.ts
-
 import type { User, Listing, Review } from './types';
 
-// Example User objects
 const exampleUsers: User[] = [
   { email: 'user1@example.com', user_id: '1' },
   { email: 'user2@example.com', user_id: '2' },
 ];
 
-// Example Review objects
 const exampleReviews: Review[] = [
   {
     text_review: 'Great place!',
@@ -21,6 +17,10 @@ const exampleReviews: Review[] = [
     storage: 4,
     laundry: 5,
     review_id: '101',
+    createdAt: '2023-11-27T12:00:00Z',
+    updatedAt: '2023-11-27T12:00:00Z',
+    user_id: '1',
+    listing_id: '1001',
   },
   {
     text_review: 'Nice neighborhood',
@@ -33,6 +33,10 @@ const exampleReviews: Review[] = [
     storage: 3,
     laundry: 4,
     review_id: '102',
+    createdAt: '2023-11-28T09:00:00Z',
+    updatedAt: '2023-11-28T09:00:00Z',
+    user_id: '2',
+    listing_id: '1002',
   },
   {
     text_review: 'Spacious and clean',
@@ -45,10 +49,13 @@ const exampleReviews: Review[] = [
     storage: 5,
     laundry: 5,
     review_id: '103',
+    createdAt: '2023-11-29T10:00:00Z',
+    updatedAt: '2023-11-29T10:00:00Z',
+    user_id: '1',
+    listing_id: '1003',
   },
 ];
 
-// Example Listing objects with relationships to Reviews
 const exampleListings: Listing[] = [
   {
     name: 'Apartment A',
@@ -59,6 +66,8 @@ const exampleListings: Listing[] = [
     address: '123 Main St',
     listing_id: '1001',
     reviews: [exampleReviews[0]],
+    createdAt: '2023-11-25T08:00:00Z',
+    updatedAt: '2023-11-25T08:00:00Z',
   },
   {
     name: 'House B',
@@ -69,6 +78,8 @@ const exampleListings: Listing[] = [
     address: '456 Oak St',
     listing_id: '1002',
     reviews: [exampleReviews[1]],
+    createdAt: '2023-11-26T10:00:00Z',
+    updatedAt: '2023-11-26T10:00:00Z',
   },
   {
     name: 'Condo C',
@@ -79,8 +90,9 @@ const exampleListings: Listing[] = [
     address: '789 Pine St',
     listing_id: '1003',
     reviews: [exampleReviews[2]],
+    createdAt: '2023-11-27T14:00:00Z',
+    updatedAt: '2023-11-27T14:00:00Z',
   },
-  // Add more listings as needed
 ];
 
 export { exampleUsers, exampleListings, exampleReviews };
