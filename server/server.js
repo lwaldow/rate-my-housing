@@ -100,13 +100,10 @@ app.post("/listings", async (req, res) => {
 });
 
 app.get("/listings/:id", async (req, res) => {
-    const listing = await Listing.findByPk(req.params.id)
-    const reviews = await Review.findAll({
-        where: {
-            listing_id: req.params.id,
-          },
+    const listing = await Listing.findByPk(req.params.id, {
+        include: [{ model: Review }],
     })
-    res.status(200).json({listing, reviews});
+    res.status(200).json({listing});
 })
 
 app.post("/reviews/:listingId", async (req, res) => {
