@@ -1,33 +1,68 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/router';
-import { TextField, Typography } from '@mui/material';
+import { useState, ChangeEvent, FormEvent } from 'react';
+import { useRouter } from 'next/navigation';
+import { TextField, Typography, Snackbar } from '@mui/material';
 import Link from 'next/link';
+
+interface ListingInput {
+    name: string;
+    management: string;
+    state: string;
+    town: string;
+    zip: string;
+    address: string;
+}
 
 export default function AddListingPage() {
     const router = useRouter();
-    const [listingData, setListingData] = useState({
+    const [listingData, setListingData] = useState<ListingInput>({
         name: '',
-        // Add other necessary fields for the new listing
+        management: '',
+        state: '',
+        town: '',
+        zip: '',
+        address: '',
     });
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState('');
+    const [snackbarSeverity, setSnackbarSeverity] = useState<'success' | 'error'>('success');
 
-    const handleInputChange = (field: string, value: string) => {
+    const handleInputChange = (field: keyof ListingInput, value: string) => {
         setListingData({
             ...listingData,
             [field]: value,
         });
     };
 
-    const handleSubmit = async () => {
+    const handleCloseSnackbar = () => {
+        setSnackbarOpen(false);
+    };
+
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         try {
-            // Implement submission logic here using fetch or any other method
-            // Example: POST request to API endpoint to add a new listing
-            // Redirect to listing details page after successful submission
-            router.push('/listings/[newListingId]', `/listings/${newListingId}`);
+            const response = await fetch('http://localhost:3000/api/post-listing', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(listingData),
+            });
+
+            if (response.ok) {
+                const newListingId = await response.json();
+                router.push(`/listings/${newListingId}`);
+            } else {
+                setSnackbarSeverity('error');
+                setSnackbarMessage('Failed to add new listing');
+                setSnackbarOpen(true);
+            }
         } catch (error) {
             console.error('Error submitting listing:', error);
-            // Handle error, display error message or toast
+            setSnackbarSeverity('error');
+            setSnackbarMessage('Failed to add new listing');
+            setSnackbarOpen(true);
         }
     };
 
@@ -37,15 +72,16 @@ export default function AddListingPage() {
                 Add New Listing
             </Typography>
             <form onSubmit={handleSubmit}>
-                {/* Replace the input fields with appropriate form fields */}
                 <TextField
                     label="Listing Name"
                     value={listingData.name}
-                    onChange={(e) => handleInputChange('name', e.target.value)}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        handleInputChange('name', e.target.value)
+                    }
                     fullWidth
                     margin="normal"
                 />
-                {/* Add other input fields for listing details */}
+                {/* Other TextFields for management, state, town, zip, and address */}
                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
                     <Link href="/listings" passHref>
                         <button className="cancel-button">Cancel</button>
@@ -59,6 +95,13 @@ export default function AddListingPage() {
                     </button>
                 </div>
             </form>
+            <Snackbar
+                open={snackbarOpen}
+                autoHideDuration={6000}
+                onClose={handleCloseSnackbar}
+                message={snackbarMessage}
+                severity={snackbarSeverity}
+            />
         </div>
     );
 }

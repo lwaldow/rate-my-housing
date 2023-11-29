@@ -2,24 +2,23 @@ import { NextRequest, NextResponse } from "next/server";
 import useMockApi from "../util/apiSwitch";
 
 export async function POST(req: NextRequest) {
-  const { body } = req;
+  const data = await req.json();
 
   if (useMockApi) {
-    console.log("Mock listing posted with data:", body);
+    console.log("Mock listing posted with data:", data);
     return NextResponse.json({ message: "Mock listing posted successfully" });
   } else {
-    // Assuming you have a route like '/api/post-listing' on your server
-    const res = await fetch('https://localhost:8080/api/post-listing', {
+    const res = await fetch('https://localhost:8080/listings/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify(data),
     });
 
     if (res.ok) {
-      const data = await res.json();
-      return NextResponse.json({ data });
+      const resultJson = await res.json();
+      return NextResponse.json({ resultJson });
     } else {
       return NextResponse.json({}, { status: res.status, statusText: res.statusText });
     }
