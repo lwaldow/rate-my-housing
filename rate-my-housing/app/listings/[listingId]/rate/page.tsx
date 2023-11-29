@@ -97,8 +97,8 @@ export default function Page({ params }: { params: { listingId: string } }) {
             if (response.ok) {
                 setSuccessOpen(true);
                 setTimeout(() => {
-                    router.push(`/listings/${params.listingId}`);
-                }, 300);
+                    router.replace(`/listings/${params.listingId}`);
+                }, 300)
             }
             else {
                 console.log('Failed to submit review');

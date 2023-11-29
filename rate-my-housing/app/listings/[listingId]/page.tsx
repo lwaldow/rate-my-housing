@@ -164,7 +164,7 @@ export default async function Page({ params }: { params: { listingId: string } }
           Ratings
         </Typography>
         {listingDTO.reviews.map((review: ReviewDTO, index) => (
-          <div style={{ border: '1px solid #ccc', marginTop: '20px' }}>
+          <div key={review.review_id} style={{ border: '1px solid #ccc', marginTop: '20px' }}>
             <div key={index} style={{ padding: '20px' }}>
               <h2>Review {index + 1}</h2>
               <Rating value={review.overallRating} readOnly size="large" precision={0.1} />
