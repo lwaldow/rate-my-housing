@@ -12,6 +12,8 @@ import Checkbox from '@mui/material/Checkbox';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Card from '@mui/material/Card';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { styled } from '@mui/material';
 
 const style = {
@@ -42,6 +44,13 @@ export default function LogInModal({ open, handleClose }: LogInModalProps) {
             password: data.get('password'),
         });
     };
+
+    const buttonStyle = {
+        backgroundColor: '#FF0000',  // Red color
+        color: '#FFFFFF',  // White text
+        width: '100%',  // Full width
+      };
+    
 
     return (
         <div>
@@ -93,7 +102,12 @@ export default function LogInModal({ open, handleClose }: LogInModalProps) {
                                 control={<Checkbox value="remember" color="primary" />}
                                 label="Remember me"
                             />
-                            <Button onClick={() => window.location.href = 'http://localhost:8080/auth/google'} fullWidth variant="contained">
+                            <Button
+                            onClick={() => window.location.href = 'http://localhost:8080/auth/google'}
+                            fullWidth
+                            variant="contained"
+                            style={buttonStyle}>
+                            <FontAwesomeIcon icon={faGoogle} style={{ marginRight: '10px' }} />
                             Sign In with Google
                             </Button>
                             <Button
