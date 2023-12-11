@@ -3,6 +3,7 @@ import '@/styles/globals.css'
 import { CssBaseline } from '@mui/material'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { AuthProvider } from '@/components/AuthContext'; // Adjust the path accordingly
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,10 +21,11 @@ export default function RootLayout({
     <html lang="en" className='h-full m-0'>
       <CssBaseline/>
       <body className={inter.className + " max-h-full min-h-full flex flex-col items-stretch justify-stretch m-0"}>
-        <Navbar/>
-        {children}
+        <AuthProvider>
+          <Navbar/>
+          {children}
+        </AuthProvider>
       </body>
     </html>
   )
 }
-

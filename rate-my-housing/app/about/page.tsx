@@ -24,7 +24,6 @@ export default function About() {
           Finding good housing close to campus is getting harder and harder for students each year, especially with the ongoing housing crisis at UMass. RateMyHousing aims to step in and provide a platform for students to find their ideal housing, on or off campus.
         </p>
         <h2 className="text-xl font-semibold mb-4">Contact Us At:</h2>
-        <p className="text-base">Team Member Cards</p>
         <p className="text-base font-bold mb-2">Contact Information:</p>
         <p className="text-base">Email: contact@ratemyhousing.com</p>
       </div>
