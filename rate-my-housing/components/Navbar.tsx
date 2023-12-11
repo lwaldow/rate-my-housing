@@ -52,7 +52,7 @@ export default function Navbar() {
         <>
             <nav className="bg-white border-b border-gray-400 p-4 pl-8 pr-8">
                 <div className="flex justify-between items-center">
-                    <Link href="/" className={playfair.className + " flex items-center"}>
+                    <Link prefetch={false} href="/" className={playfair.className + " flex items-center"}>
                         <img
                             src="/favicon.ico"
                             alt="Logo"

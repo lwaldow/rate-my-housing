@@ -82,7 +82,8 @@ export default function AddListingPage() {
 
             if (response.ok) {
                 const newListingId = await response.json();
-                router.push(`/listings/${newListingId.data.listing_id}`);
+
+                router.push(`/listings/${newListingId.data.listing_id}` );
             } else {
                 setSnackbarSeverity('error');
                 setSnackbarMessage('Failed to add new listing');

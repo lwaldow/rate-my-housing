@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
     console.log("Mock listing posted with data:", data);
     return NextResponse.json({ data: exampleListings[0] });
   } else {
-    const res = await fetch('https://localhost:8080/listings/', {
+    const res = await fetch('http://localhost:8080/listings/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
 
     if (res.ok) {
       const resultJson = await res.json();
-      return NextResponse.json({ resultJson });
+      return NextResponse.json({ data: resultJson });
     } else {
       return NextResponse.json({}, { status: res.status, statusText: res.statusText });
     }
