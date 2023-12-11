@@ -50,6 +50,26 @@ export default function Navbar() {
 
 
     return (
+<<<<<<< HEAD
+        <>
+            <nav className="bg-white border-b border-gray-400 p-4 pl-8 pr-8">
+                <div className="flex justify-between items-center">
+                    <Link prefetch={false} href="/" className={playfair.className + " flex items-center"}>
+                        <img
+                            src="/favicon.ico"
+                            alt="Logo"
+                            className="w-12 h-12 mr-0.1" // Adjust the width and height as needed
+                        />
+                        <span className="text-self-center whitespace-nowrap text-3xl font-extrabold text-rose-900 hover:text-rose-950">RateMy</span>
+                        <span className="text-self-center whitespace-nowrap text-3xl font-extrabold text-slate-900">Housing</span>
+                    </Link>
+                    <div>
+                        <Link href="/about" className="text-self-center text-1xl font-bold text-rose-900 hover:text-rose-950 underline mr-2">About</Link>
+                        <Link href="/new-listing" className="text-self-center text-1xl font-bold text-rose-900 hover:text-rose-950 underline mr-2">Add Listing</Link>
+                        <a onClick={handleLoginOpen} style={logInButtonStyle} className=" border text-rose-900 hover:text-rose-950 border-rose-900 hover:border-rose-950 mr-1">Log In</a>
+                        <a onClick={handleSignupOpen} style={signUpButtonStyle} className="bg-rose-900 hover:bg-rose-950">Sign Up</a>
+                    </div>
+=======
     <>
         <nav className="bg-white border-b border-gray-400 p-4 pl-8 pr-8">
         <div className="flex justify-between items-center">
@@ -86,6 +106,7 @@ export default function Navbar() {
                 <a onClick={handleSignupOpen} style={signUpButtonStyle} className="bg-rose-900 hover:bg-rose-950">
                     Sign Up
                 </a>
+>>>>>>> 76a9eee7c05311a4869a92ebacac1446a74e2b3d
                 </div>
             )}
             </div>

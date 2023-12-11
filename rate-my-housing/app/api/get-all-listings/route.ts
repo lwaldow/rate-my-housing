@@ -10,8 +10,8 @@ export async function GET(): Promise<NextResponse<{ data: ListingDTO[] }>> {
     return NextResponse.json({ data: listingDTOs });
   } else {
     const res = await fetch('http://localhost:8080/listings');
-    const json = await res.json()
-    const listingDTOs: ListingDTO[] = json.map((obj: {listing: Listing, reviews: Review[]}) => transformListing(obj.listing, obj.reviews))
+    const listings: Listing[] = await res.json()
+    const listingDTOs: ListingDTO[] = listings.map((listing: Listing) => transformListing(listing))
     return NextResponse.json({ data: listingDTOs });
   }
 }

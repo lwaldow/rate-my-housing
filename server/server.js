@@ -76,6 +76,18 @@ app.post("/users", async (req, res) => {
     }
 });
 
+app.get("/users/:id", async(req, res) => {
+    const userProfile = await Review.findAll({
+        where: {
+            user_id: req.params.id,
+        },
+        include: {
+            model: Listing
+        }
+    })
+    res.status(200).json(userProfile);
+})
+
 // get complexes
 app.get("/listings", async (req, res) => {
     const listingsWithReviews = await Listing.findAll({
