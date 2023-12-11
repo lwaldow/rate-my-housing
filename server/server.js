@@ -6,7 +6,6 @@ const {sequelize, connectToDB} = require('./db')
 const {User, Review, Listing} = require('./all.model')
 const controller  = require('./all.controller.js')
 const body_parser = require('body-parser')
-
 const session = require('express-session');
 const passport = require('passport');
 require('./auth');

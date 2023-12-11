@@ -11,7 +11,11 @@ const User = sequelize.define("users", {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
-   }
+   },
+   displayName: {
+      type: DataTypes.STRING,
+      required: true,
+  }
 });
 
 // block 2
